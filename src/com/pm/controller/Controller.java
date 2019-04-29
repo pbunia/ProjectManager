@@ -1,17 +1,13 @@
 package com.pm.controller;
 
 
-
-
-
-
-
-
-
-
 import java.awt.List;
+import java.time.LocalDate;
+
+import org.glassfish.jersey.server.spi.internal.ValueParamProvider.Priority;
 
 import com.pm.model.client.PMClient;
+import com.pm.model.task.Category;
 import com.pm.model.task.Task;
 import com.pm.view.TaskTile;
 
@@ -24,7 +20,9 @@ public class Controller {
 	@FXML
 	private VBox vBoxSB;
 	
+	@FXML
 	public void refresh() {
+		
 		vBoxSB.getChildren().clear();
 		
 		PMClient client = new PMClient();
@@ -40,5 +38,23 @@ public class Controller {
 		
 		}
 	
+	@FXML
+	public void addTaskButton() {
+		Task task = new Task ();
+		
+	}
+	@FXML
+	public void removeTaskButton() {
 	
-}
+		
+	}
+	
+	public void editTaskButton() {
+		
+	}
+	
+	public void initialize() {
+		
+	}
+}  
+
