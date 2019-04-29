@@ -5,19 +5,23 @@ import java.time.LocalDate;
 import com.pm.model.task.Category;
 import com.pm.model.task.Priority;
 
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-public class TaskTile {
+public class TaskTile extends VBox{
 
 	private Long id;
 	private String groupId;
 
+	private Stage stage= new Stage();
 	private HBox hBox1 = new HBox();
 	private HBox hBox2 = new HBox();
 	private VBox vBox = new VBox();
+	private Scene scene= new Scene(hBox2);
 
 	private Label categoryLabel;
 	private Label createDateLabel;
@@ -36,6 +40,9 @@ public class TaskTile {
 		setHBox1(category, createDate, finishDate, priority);
 		setVBox(title, userId, comment);
 		setHBox2(finishStatus);
+		
+		stage.setScene(scene);
+		stage.show();
 
 	}
 
@@ -67,9 +74,9 @@ public class TaskTile {
 		hBox2.setSpacing(20);
 	}
 
-	public Long getId() {
-		return id;
-	}
+//	public Long getId() {
+//		return id;
+//	}
 
 	public String getGroupId() {
 		return groupId;

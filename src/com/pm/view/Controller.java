@@ -1,16 +1,8 @@
-package com.pm.controller;
+package com.pm.view;
 
-
-import java.awt.List;
-import java.time.LocalDate;
-
-import org.glassfish.jersey.server.spi.internal.ValueParamProvider.Priority;
-
+import java.util.List;
 import com.pm.model.client.PMClient;
-import com.pm.model.task.Category;
 import com.pm.model.task.Task;
-import com.pm.view.TaskTile;
-
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 
@@ -20,10 +12,11 @@ public class Controller {
 	@FXML
 	private VBox vBoxSB;
 	
+	
 	@FXML
 	public void refresh() {
 		
-		vBoxSB.getChildren().clear();
+//		vBoxSB.getChildren().clear();
 		
 		PMClient client = new PMClient();
 		List<Task> tasks = client.getAllTasks();
@@ -31,16 +24,17 @@ public class Controller {
 		TaskTile taskTile[] = new TaskTile[tasks.size()];
 		
 		for(int i=0; i<tasks.size(); i++) {
-			taskTile[i] = new TaskTile(tasks.getId(), tasks.getUserId(), tasks.getGroupId(), tasks.getTitle(), tasks.getComment(), tasks.getCategory(),
-					tasks.getCreateDate(), tasks.getFinishDate(), tasks.getPriority(), tasks.isFinishStatus());
+			taskTile[i] = new TaskTile(tasks.get(i).getId(), tasks.get(i).getUserId(), tasks.get(i).getGroupId(), tasks.get(i).getTitle(), tasks.get(i).getComment(), tasks.get(i).getCategory(),
+					tasks.get(i).getCreateDate(), tasks.get(i).getFinishDate(), tasks.get(i).getPriority(), tasks.get(i).isFinishStatus());
 			vBoxSB.getChildren().add(taskTile[i]);
 		}
+		
 		
 		}
 	
 	@FXML
 	public void addTaskButton() {
-		Task task = new Task ();
+//		Task task = new Task ();
 		
 	}
 	@FXML
@@ -54,7 +48,7 @@ public class Controller {
 	}
 	
 	public void initialize() {
-		
+		refresh();
 	}
 }  
 

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pm.view.Controller">
    <children>
       <SplitPane prefHeight="800.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
@@ -31,10 +31,10 @@
                         <VBox fx:id="vBoxSB" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" />
                         <ToolBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="2">
                           <items>
-                            <Button mnemonicParsing="false" text="ADD" />
-                              <Button mnemonicParsing="false" text="EDIT" />
-                              <Button mnemonicParsing="false" text="DELETE" />
-                              <Button mnemonicParsing="false" text="REFRESH" />
+                            <Button mnemonicParsing="false" onAction="#addTaskButton" text="ADD" />
+                              <Button mnemonicParsing="false" onAction="#editTaskButton" text="EDIT" />
+                              <Button mnemonicParsing="false" onAction="#removeTaskButton" text="DELETE" />
+                              <Button mnemonicParsing="false" onAction="#refresh" text="REFRESH" />
                           </items>
                         </ToolBar>
                      </children>
