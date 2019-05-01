@@ -9,19 +9,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class TaskTile extends VBox{
+public class TaskTile extends Pane{
 
 	private Long id;
 	private String groupId;
 
-	private Stage stage= new Stage();
+//	private Stage stage= new Stage();
 	private HBox hBox1 = new HBox();
 	private HBox hBox2 = new HBox();
 	private VBox vBox = new VBox();
-	private Scene scene= new Scene(hBox2);
+//	private Scene scene= new Scene(hBox2);
 
 	private Label categoryLabel;
 	private Label createDateLabel;
@@ -40,9 +41,9 @@ public class TaskTile extends VBox{
 		setHBox1(category, createDate, finishDate, priority);
 		setVBox(title, userId, comment);
 		setHBox2(finishStatus);
-		
-		stage.setScene(scene);
-		stage.show();
+		getChildren().add(hBox2);
+//		stage.setScene(scene);
+//		stage.show();
 
 	}
 
