@@ -16,7 +16,7 @@ public class Controller {
 	@FXML
 	public void refresh() {
 		
-//		vBoxSB.getChildren().clear();
+		vBoxSB.getChildren().clear();
 		
 		PMClient client = new PMClient();
 		List<Task> tasks = client.getAllTasks();
