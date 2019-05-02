@@ -11,40 +11,40 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <SplitPane prefHeight="800.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <items>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <GridPane alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="709.0" minHeight="10.0" prefHeight="709.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="My Projects" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <VBox fx:id="vBoxSB" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" />
-                        <ToolBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="2">
-                          <items>
-                            <Button mnemonicParsing="false" text="ADD" />
-                              <Button mnemonicParsing="false" text="EDIT" />
-                              <Button mnemonicParsing="false" text="DELETE" />
-                              <Button mnemonicParsing="false" text="REFRESH" />
-                          </items>
-                        </ToolBar>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </GridPane>
-               </children>
-            </AnchorPane>
-         </items>
-      </SplitPane>
-   </children>
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pm.view.Controller">
+	<children>
+		<SplitPane prefHeight="800.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<items>
+				<AnchorPane prefHeight="200.0" prefWidth="200.0">
+					<children>
+						<GridPane alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+							<columnConstraints>
+								<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+							</columnConstraints>
+							<rowConstraints>
+								<RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+								<RowConstraints maxHeight="709.0" minHeight="10.0" prefHeight="709.0" vgrow="SOMETIMES" />
+								<RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+							</rowConstraints>
+							<children>
+								<Label alignment="CENTER" contentDisplay="CENTER" text="My Tasks" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+								<VBox fx:id="vBoxSB" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" />
+								<ToolBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="2">
+									<items>
+										<Button mnemonicParsing="false" onAction="#addTaskButton" text="ADD" />
+										<Button mnemonicParsing="false" onAction="#editTaskButton" text="EDIT" />
+										<Button mnemonicParsing="false" onAction="#removeTaskButton" text="DELETE" />
+										<Button mnemonicParsing="false" onAction="#refresh" text="REFRESH" />
+									</items>
+								</ToolBar>
+							</children>
+							<padding>
+								<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+							</padding>
+						</GridPane>
+					</children>
+				</AnchorPane>
+			</items>
+		</SplitPane>
+	</children>
 </AnchorPane>
