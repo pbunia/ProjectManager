@@ -1,15 +1,20 @@
 package com.pm.view;
 
+import java.io.IOException;
 import java.util.List;
+
+import com.pm.Main;
 import com.pm.model.client.PMClient;
 import com.pm.model.task.Task;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 
-public class Controller {
+public class MainViewController {
 
 	@FXML
 	private VBox vBoxSB;
+	
+	private Main main;
 
 	@FXML
 	public void refresh() {
@@ -28,15 +33,17 @@ public class Controller {
 					tasks.get(i).isFinishStatus());
 			vBoxSB.getChildren().add(taskTile[i]);
 		}
-
+		
+		
+	
 	}
 
-	@FXML
-	public void addTaskButton() {
-//		Task task = new Task ();
-
+	@FXML	
+	private void addTaskButton() throws IOException {
+		Main.showAddTaskScreen();
 	}
-
+	
+	
 	@FXML
 	public void removeTaskButton() {
 
