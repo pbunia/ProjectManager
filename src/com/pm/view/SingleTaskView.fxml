@@ -61,7 +61,7 @@
                   </ComboBox>
                   <Label prefHeight="55.0" prefWidth="90.0" text="Creation date" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Label text="Finish date" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <DatePicker fx:id="dateCreation" editable="false" onAction="#dateCreationNow" promptText="pick start date" GridPane.columnIndex="3" />
+                  <DatePicker fx:id="dateCreation" editable="false" promptText="pick start date" GridPane.columnIndex="3" />
                   <DatePicker fx:id="dateFinish" promptText="pick finish date" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <CheckBox fx:id="cboxComplete" mnemonicParsing="false" text="Task Completed" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                   <Label text="Task ID" GridPane.halignment="CENTER" />
@@ -70,12 +70,11 @@
                   <Label text="Group ID" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                   <TextField fx:id="txtUserID" text="user ID" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                   <TextField fx:id="txtGroupID" text="group ID" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Label fx:id="lblDate" onDragDetected="#dateCreationNow" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <ToolBar prefHeight="28.0" prefWidth="600.0" VBox.vgrow="NEVER">
               <items>
-                <Button fx:id="btnAdd" mnemonicParsing="false" prefWidth="80.0" text="ADD" />
+                <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#createTaskButton" prefWidth="80.0" text="ADD" />
                   <Button fx:id="btnReset" mnemonicParsing="false" onAction="#resetButton" prefWidth="80.0" text="RESET" />
                   <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelButton" prefWidth="80.0" text="CANCEL" />
               </items>

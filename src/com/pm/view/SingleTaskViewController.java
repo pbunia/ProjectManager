@@ -1,9 +1,10 @@
 package com.pm.view;
 
 import java.time.LocalDate;
-import java.util.Calendar;
 
+import com.pm.model.client.PMClient;
 import com.pm.model.task.Category;
+import com.pm.model.task.Priority;
 import com.pm.model.task.Task;
 
 import javafx.collections.FXCollections;
@@ -20,78 +21,94 @@ import javafx.stage.Stage;
 
 public class SingleTaskViewController {
 
-ObservableList<String> prioritylist = FXCollections.observableArrayList("LOW","MEDIUM","HIGH");
-ObservableList<String> categorylist = FXCollections.observableArrayList("DOM","PRACA");
+	ObservableList<Priority> prioritylist = FXCollections.observableArrayList(Priority.values());
+	ObservableList<Category> categorylist = FXCollections.observableArrayList(Category.values());
 // these are items on SingleTaskView form
-@FXML
-private TextField txtTitle; 
-@FXML
-private TextArea txtDescription; 
+	@FXML
+	private TextField txtTitle;
+	@FXML
+	private TextArea txtDescription;
 
-@FXML
-private TextField txtUserID; 
+	@FXML
+	private TextField txtUserID;
 
-@FXML
-private TextField txtGroupID;
+	@FXML
+	private TextField txtGroupID;
 
-@FXML
-private  ComboBox<String> comboBoxCategory;
+	@FXML
+	private ComboBox<Category> comboBoxCategory;
 
-@FXML
-private ComboBox<String> comboBoxPriority;
+	@FXML
+	private ComboBox<Priority> comboBoxPriority;
 
-@FXML
-private DatePicker dateCreation;
+	@FXML
+	private DatePicker dateCreation;
 
-@FXML
-private DatePicker dateFinish;
+	@FXML
+	private DatePicker dateFinish;
 
-@FXML
-private CheckBox cboxComplete;
+	@FXML
+	private CheckBox cboxComplete;
 
-@FXML Button btnAdd;
+	@FXML
+	Button btnAdd;
 
-@FXML Button btnReset;
+	@FXML
+	Button btnReset;
 
-@FXML Button btnCancel;
+	@FXML
+	Button btnCancel;
 
-
-@FXML
-private  String dateCreationNow() {
-
-String date = String.valueOf(LocalDate.now());	
-System.out.println(date);
-return date;
-
-}
-
-@FXML
-private void initialize() {
-	
-	//comboBoxPriority.setValue("LOW");
-	comboBoxPriority.setItems(prioritylist);
-	comboBoxCategory.setItems(categorylist);
-}
-
-
-
-public void cancelButton (ActionEvent event) {
-	Stage stage = (Stage) btnCancel.getScene().getWindow();
-	stage.close();
-	
-}
-public void resetButton(ActionEvent event) {
-	txtTitle.setText(null);
-	txtDescription.setText(null);
-	txtUserID.setText(null);
-	txtGroupID.setText(null);
 	
 	
+	/*  @FXML private String dateCreationNow() {
+	 
+	 String date = String.valueOf(LocalDate.now()); System.out.println(date);
+	 return date;
+	  
+	  } */
+	 
+
+	@FXML
+	private void initialize() {
+		
+		comboBoxPriority.setItems(prioritylist);
+		comboBoxCategory.setItems(categorylist);
+	}
+	@FXML
+	public void cancelButton(ActionEvent event) {
+		Stage stage = (Stage) btnCancel.getScene().getWindow();
+		stage.close();
+
+	}
+	@FXML
+	public void resetButton(ActionEvent event) {
+		txtTitle.setText(null);
+		txtDescription.setText(null);
+		txtUserID.setText(null);
+		txtGroupID.setText(null);
+
+	}
+	@FXML
+	public void createTaskButton () {
+		
+		
+		String userId = txtUserID.getText();
+		String groupId = txtGroupID.getText();
+		String title = txtTitle.getText();
+		String comment = txtDescription.getText();
+		Category category = comboBoxCategory.getValue();
+		LocalDate createDate = dateCreation.getValue();
+		LocalDate finishDate = dateFinish.getValue();
+		Priority priority = comboBoxPriority.getValue();
+		boolean finishStatus = cboxComplete.hasProperties();
+		
+		
+		PMClient client = new PMClient();
+		client.postTask(new Task( userId, groupId, title, comment, category,
+				createDate, finishDate, priority, finishStatus));
+		
+	
+	}
+		
 }
-
-public void createTaskButton
-
-}
-
-
-

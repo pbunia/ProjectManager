@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 public class Main extends Application {
 	
 	
-	private static Stage primaryStage;
+
 	@Override
 	public void start(Stage primaryStage) {
 
@@ -27,19 +27,7 @@ public class Main extends Application {
 		primaryStage.show();
 	}
 	
-	public static void showAddTaskScreen() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/SingleTaskView.fxml"));
-		AnchorPane addNewTask = loader.load();
-		
-		Stage addDialogStage = new Stage();
-		addDialogStage.setTitle("Add new Task");
-		addDialogStage.initModality(Modality.WINDOW_MODAL);
-		addDialogStage.initOwner(primaryStage);
-		Scene scene  = new Scene(addNewTask);
-		addDialogStage.setScene(scene);
-		addDialogStage.showAndWait();
-	}
+	
 
 	public static void main(String[] args) {
 		launch(args);

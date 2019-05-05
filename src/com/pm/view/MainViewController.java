@@ -7,7 +7,12 @@ import com.pm.Main;
 import com.pm.model.client.PMClient;
 import com.pm.model.task.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class MainViewController {
 
@@ -15,6 +20,8 @@ public class MainViewController {
 	private VBox vBoxSB;
 	
 	private Main main;
+	
+	private static Stage primaryStage;
 
 	@FXML
 	public void refresh() {
@@ -34,13 +41,27 @@ public class MainViewController {
 			vBoxSB.getChildren().add(taskTile[i]);
 		}
 		
-		
+	}
+		// this is new task window 
+		public static void showAddTaskScreen() throws IOException {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/SingleTaskView.fxml"));
+			AnchorPane addNewTask = loader.load();
+			
+			Stage addDialogStage = new Stage();
+			addDialogStage.setTitle("Add new Task");
+			addDialogStage.initModality(Modality.WINDOW_MODAL);
+			addDialogStage.initOwner(primaryStage);
+			Scene scene  = new Scene(addNewTask);
+			addDialogStage.setScene(scene);
+			addDialogStage.showAndWait();
+			
 	
 	}
 
 	@FXML	
 	private void addTaskButton() throws IOException {
-		Main.showAddTaskScreen();
+		showAddTaskScreen();
 	}
 	
 	
@@ -48,11 +69,11 @@ public class MainViewController {
 	public void removeTaskButton() {
 
 	}
-
+	@FXML
 	public void editTaskButton() {
 
 	}
-
+	@FXML
 	public void initialize() {
 		refresh();
 	}
