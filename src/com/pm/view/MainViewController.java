@@ -19,8 +19,6 @@ public class MainViewController {
 	@FXML
 	private VBox vBoxSB;
 	
-	private Main main;
-	
 	private static Stage primaryStage;
 
 	@FXML
