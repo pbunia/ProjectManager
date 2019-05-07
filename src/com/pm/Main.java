@@ -1,5 +1,6 @@
 package com.pm;
 
+import com.pm.view.LoginController;
 import com.pm.view.MainViewController;
 
 import javafx.application.Application;
@@ -13,7 +14,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
-		ViewLoader<AnchorPane, MainViewController> viewLoader = new ViewLoader<>("view/TasksView.fxml");
+		ViewLoader<AnchorPane, LoginController> viewLoader = new ViewLoader<>("view/LoginView.fxml");
 		AnchorPane anchorPane = viewLoader.getLayout();
 
 		Scene scene = new Scene(anchorPane);
