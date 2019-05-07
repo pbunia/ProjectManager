@@ -1,22 +1,15 @@
 package com.pm;
 
-import java.io.IOException;
-
 import com.pm.view.MainViewController;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 //import javafx.scene.layout.BorderPane;
 
 public class Main extends Application {
 	
-	
-
 	@Override
 	public void start(Stage primaryStage) {
 
@@ -29,8 +22,6 @@ public class Main extends Application {
 		primaryStage.show();
 		
 	}
-	
-	
 
 	public static void main(String[] args) {
 		launch(args);

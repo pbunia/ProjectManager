@@ -6,6 +6,10 @@ import java.util.List;
 import com.pm.Main;
 import com.pm.model.client.PMClient;
 import com.pm.model.task.Task;
+
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class MainViewController {
 
@@ -37,8 +42,7 @@ public class MainViewController {
 					tasks.get(i).getCreateDate(), tasks.get(i).getFinishDate(), tasks.get(i).getPriority(),
 					tasks.get(i).isFinishStatus());
 			vBoxSB.getChildren().add(taskTile[i]);
-		}
-		
+		}		
 	}
 		// this is new task window 
 		public static void showAddTaskScreen() throws IOException {
@@ -52,9 +56,6 @@ public class MainViewController {
 			addDialogStage.initOwner(primaryStage);
 			Scene scene  = new Scene(addNewTask);
 			addDialogStage.setScene(scene);
-			addDialogStage.showAndWait();
-			
-	
 	}
 
 	@FXML	
@@ -62,17 +63,24 @@ public class MainViewController {
 		showAddTaskScreen();
 	}
 	
-	
 	@FXML
 	public void removeTaskButton() {
 
 	}
+	
 	@FXML
 	public void editTaskButton() {
 
 	}
+	
 	@FXML
 	public void initialize() {
-		refresh();
+		
+		Timeline timeline = new Timeline(new KeyFrame(
+		        Duration.millis(2500),
+		        ae -> refresh()));
+		timeline.setCycleCount(Animation.INDEFINITE);
+		timeline.play();
+		
 	}
 }

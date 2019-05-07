@@ -7,11 +7,7 @@ import com.pm.model.task.Category;
 import com.pm.model.task.Priority;
 import com.pm.model.task.Task;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -22,10 +18,6 @@ import javafx.stage.WindowEvent;
 
 public class EditTaskViewController {
 
-
-	
-// these are items on SingleTaskView form
-	
 	@FXML private TextField txtTitle;
 	@FXML private TextArea txtDescription;
 	@FXML private TextField txtUserID;
@@ -37,24 +29,15 @@ public class EditTaskViewController {
 	@FXML private CheckBox cboxComplete;
 	 	
 	private Stage stage;
-	private Long id;
 	private Task theTask;
-	private String title;
 	
 	@FXML
 	private void initialize() {
-		
 		comboBoxPriority.getItems().setAll(Priority.values());
 		comboBoxCategory.getItems().setAll(Category.values());
-
-		
-		
-		
-
 	}
 	
 	public void loadTask() {
-		
 		txtUserID.setText(theTask.getUserId());
 		txtGroupID.setText(theTask.getGroupId());
 		txtTitle.setText(theTask.getTitle());
@@ -70,21 +53,10 @@ public class EditTaskViewController {
 		this.stage = stage;
 	}
 	
-	public void setTheId(Long id) {
-		this.id = id;
-	}
-	
 	public void setTask(Task theTask) {
 		this.theTask = theTask;
 		loadTask();
 	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getTitle() {
-		return title;
-	}
-	
 	
 	@FXML
 	public void cancelButton() {
@@ -93,8 +65,6 @@ public class EditTaskViewController {
 
 	@FXML
 	public void createTaskButton () {
-		
-		
 		String userId = txtUserID.getText();
 		String groupId = txtGroupID.getText();
 		String title = txtTitle.getText();
@@ -104,14 +74,12 @@ public class EditTaskViewController {
 		LocalDate finishDate = dateFinish.getValue();
 		Priority priority = comboBoxPriority.getValue();
 		boolean finishStatus = cboxComplete.isSelected();
-		
-		
+
 		PMClient client = new PMClient();
-		client.putTask(new Task( id, userId, groupId, title, comment, category,
+		client.putTask(new Task(theTask.getId(), userId, groupId, title, comment, category,
 				createDate, finishDate, priority, finishStatus));
 		
 		stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
-	
 	}
 		
 }

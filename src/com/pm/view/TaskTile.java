@@ -1,9 +1,6 @@
 package com.pm.view;
 
-import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Optional;
-
 
 import com.pm.ViewLoader;
 import com.pm.model.client.PMClient;
@@ -11,7 +8,6 @@ import com.pm.model.task.Category;
 import com.pm.model.task.Priority;
 import com.pm.model.task.Task;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -34,10 +30,6 @@ public class TaskTile extends Pane {
 	private LocalDate createDate;
 	private LocalDate finishDate;
 	private Priority priority;
-	
-	
-
-	
 
 	private HBox hBox1 = new HBox();
 	private HBox hBox2 = new HBox();
@@ -105,8 +97,6 @@ public class TaskTile extends Pane {
 		vBox2.setSpacing(5);
 	}
 	
-
-
 	public void setHBox2(boolean finishStatus) {
 		finishCB = new CheckBox();
 		finishCB.setSelected(finishStatus);
@@ -136,39 +126,19 @@ public class TaskTile extends Pane {
 	}
 	
 	public void showEditTaskScreen() {
-		Stage addDialogStage = new Stage();
+		Stage editDialogStage = new Stage();
 		PMClient client = new PMClient();
 		Task theTask = client.getTask(this.getTheId());
 		
-		
-//		System.out.println(theTask.getComment());
-//		new EditTaskViewController(theTask);
-		
 		ViewLoader<AnchorPane, EditTaskViewController> viewLoader = new ViewLoader<>("view/EditTaskView.fxml");
-		
-//		FXMLLoader loader = new FXMLLoader();
-//		loader.setLocation(Main.class.getResource("view/EditTaskView.fxml"));
-//		AnchorPane anchorPane = loader.load();
-		
-
-//		viewLoader.getController().setTitle("Tesyty");
-		viewLoader.getController().setStage(addDialogStage);
-//		((EditTaskViewController) viewLoader.getController()).setTheId(id);
+		viewLoader.getController().setStage(editDialogStage);
 		viewLoader.getController().setTask(theTask);
-		
-
 		AnchorPane anchorPane = viewLoader.getLayout();
 		Scene scene  = new Scene(anchorPane);
-		
-		
-		addDialogStage.setTitle("Edit");
-		addDialogStage.initModality(Modality.WINDOW_MODAL);
-		addDialogStage.setScene(scene);
-		addDialogStage.showAndWait();
-		
-
-		
-
+		editDialogStage.setTitle("Edit");
+		editDialogStage.initModality(Modality.WINDOW_MODAL);
+		editDialogStage.setScene(scene);
+		editDialogStage.showAndWait();
 }
 	
 
