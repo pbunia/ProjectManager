@@ -2,6 +2,8 @@ package com.pm.view;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Optional;
+
 
 import com.pm.ViewLoader;
 import com.pm.model.client.PMClient;
@@ -41,7 +43,6 @@ public class TaskTile extends Pane {
 	private HBox hBox2 = new HBox();
 	private VBox vBox1 = new VBox();
 	private VBox vBox2 = new VBox();
-	private static Stage primaryStage;
 
 	private Label categoryLabel;
 	private Label createDateLabel;
@@ -98,14 +99,7 @@ public class TaskTile extends Pane {
 		delBtn = new Button("X");
 		delBtn.setOnAction(e->deleteTask());
 		editBtn = new Button("E");
-		editBtn.setOnAction(e->{
-			try {
-				showEditTaskScreen();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		});
+		editBtn.setOnAction(e->showEditTaskScreen());
 		
 		vBox2.getChildren().addAll(delBtn, editBtn);
 		vBox2.setSpacing(5);
@@ -141,27 +135,38 @@ public class TaskTile extends Pane {
 		client.deleteTask(this.getTheId());
 	}
 	
-	public void showEditTaskScreen() throws IOException {
-		new EditTaskViewController(id);
-		
-		ViewLoader<AnchorPane, Object> viewLoader = new ViewLoader<AnchorPane, Object>("view/EditTaskView.fxml");
-		AnchorPane anchorPane = viewLoader.getLayout();
-		
+	public void showEditTaskScreen() {
 		Stage addDialogStage = new Stage();
-//		((EditTaskViewController) viewLoader.getController()).setStage(addDialogStage);
+		PMClient client = new PMClient();
+		Task theTask = client.getTask(this.getTheId());
 		
+		
+//		System.out.println(theTask.getComment());
+//		new EditTaskViewController(theTask);
+		
+		ViewLoader<AnchorPane, EditTaskViewController> viewLoader = new ViewLoader<>("view/EditTaskView.fxml");
 		
 //		FXMLLoader loader = new FXMLLoader();
-//		loader.setLocation(Main.class.getResource("view/SingleTaskView.fxml"));
-//		AnchorPane addNewTask = loader.load();
+//		loader.setLocation(Main.class.getResource("view/EditTaskView.fxml"));
+//		AnchorPane anchorPane = loader.load();
+		
+
+//		viewLoader.getController().setTitle("Tesyty");
+		viewLoader.getController().setStage(addDialogStage);
+//		((EditTaskViewController) viewLoader.getController()).setTheId(id);
+		viewLoader.getController().setTask(theTask);
+		
+
+		AnchorPane anchorPane = viewLoader.getLayout();
+		Scene scene  = new Scene(anchorPane);
 		
 		
 		addDialogStage.setTitle("Edit");
 		addDialogStage.initModality(Modality.WINDOW_MODAL);
-		addDialogStage.initOwner(primaryStage);
-		Scene scene  = new Scene(anchorPane);
 		addDialogStage.setScene(scene);
 		addDialogStage.showAndWait();
+		
+
 		
 
 }

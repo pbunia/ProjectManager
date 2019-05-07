@@ -2,6 +2,8 @@ package com.pm;
 
 import java.io.IOException;
 
+import com.pm.view.MainViewController;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Modality;
@@ -18,13 +20,14 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
-		ViewLoader<AnchorPane, Object> viewLoader = new ViewLoader<AnchorPane, Object>("view/TasksView.fxml");
+		ViewLoader<AnchorPane, MainViewController> viewLoader = new ViewLoader<>("view/TasksView.fxml");
 		AnchorPane anchorPane = viewLoader.getLayout();
 
 		Scene scene = new Scene(anchorPane);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Project Manager");
 		primaryStage.show();
+		
 	}
 	
 	

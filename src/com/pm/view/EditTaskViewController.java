@@ -22,50 +22,38 @@ import javafx.stage.WindowEvent;
 
 public class EditTaskViewController {
 
-	private Stage stage;
-	private Long id;
+
 	
 // these are items on SingleTaskView form
 	
-	@FXML
-	private TextField txtTitle;
+	@FXML private TextField txtTitle;
+	@FXML private TextArea txtDescription;
+	@FXML private TextField txtUserID;
+	@FXML private TextField txtGroupID;
+	@FXML private ComboBox<Category> comboBoxCategory;
+	@FXML private ComboBox<Priority> comboBoxPriority;
+	@FXML private DatePicker dateCreation;
+	@FXML private DatePicker dateFinish;
+	@FXML private CheckBox cboxComplete;
+	 	
+	private Stage stage;
+	private Long id;
+	private Task theTask;
+	private String title;
 	
-	@FXML
-	private TextArea txtDescription;
-
-	@FXML
-	private TextField txtUserID;
-
-	@FXML
-	private TextField txtGroupID;
-
-	@FXML
-	private ComboBox<Category> comboBoxCategory;
-
-	@FXML
-	private ComboBox<Priority> comboBoxPriority;
-
-	@FXML
-	private DatePicker dateCreation;
-
-	@FXML
-	private DatePicker dateFinish;
-
-	@FXML
-	private CheckBox cboxComplete;
-	
-	public EditTaskViewController (Long id) {
-		this.id = id;
-	}
-	 
-
 	@FXML
 	private void initialize() {
-		PMClient client = new PMClient();
-		Task theTask = client.getTask(id);
 		
 		comboBoxPriority.getItems().setAll(Priority.values());
 		comboBoxCategory.getItems().setAll(Category.values());
+
+		
+		
+		
+
+	}
+	
+	public void loadTask() {
 		
 		txtUserID.setText(theTask.getUserId());
 		txtGroupID.setText(theTask.getGroupId());
@@ -78,18 +66,29 @@ public class EditTaskViewController {
 		cboxComplete.setSelected(theTask.isFinishStatus());
 	}
 	
-	
-	
 	public void setStage(Stage stage) {
 		this.stage = stage;
 	}
 	
+	public void setTheId(Long id) {
+		this.id = id;
+	}
 	
+	public void setTask(Task theTask) {
+		this.theTask = theTask;
+		loadTask();
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getTitle() {
+		return title;
+	}
 	
 	
 	@FXML
 	public void cancelButton() {
-		new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST);
+		stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
 	}
 
 	@FXML
@@ -111,7 +110,7 @@ public class EditTaskViewController {
 		client.putTask(new Task( id, userId, groupId, title, comment, category,
 				createDate, finishDate, priority, finishStatus));
 		
-		new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST);
+		stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
 	
 	}
 		
