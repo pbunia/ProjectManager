@@ -25,8 +25,8 @@ public class SingleTaskViewController {
 	private Stage stage;
 	private ObservableList<String> projectList;
 	
-	ObservableList<Priority> prioritylist = FXCollections.observableArrayList(Priority.values());
-	ObservableList<Category> categorylist = FXCollections.observableArrayList(Category.values());
+//	ObservableList<Priority> prioritylist = FXCollections.observableArrayList(Priority.values());
+//	ObservableList<Category> categorylist = FXCollections.observableArrayList(Category.values());
 // these are items on SingleTaskView form
 	@FXML
 	private TextField txtTitle;
@@ -80,9 +80,8 @@ public class SingleTaskViewController {
 	
 	@FXML
 	private void initialize() {
-		
-		comboBoxPriority.setItems(prioritylist);
-		comboBoxCategory.setItems(categorylist);
+		comboBoxPriority.getItems().setAll(Priority.values());
+		comboBoxCategory.getItems().setAll(Category.values());
 		resetButton();
 	}
 	@FXML
