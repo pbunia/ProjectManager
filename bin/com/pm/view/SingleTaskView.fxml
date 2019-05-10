@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -70,13 +69,10 @@
             </GridPane>
             <ToolBar prefHeight="28.0" prefWidth="600.0" VBox.vgrow="NEVER">
               <items>
-                <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#createTaskButton" prefWidth="80.0" text="ADD" />
-                  <Button fx:id="btnReset" mnemonicParsing="false" onAction="#resetButton" prefWidth="80.0" text="RESET" />
-                  <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelButton" prefWidth="80.0" text="CANCEL" />
+                <Button mnemonicParsing="false" onAction="#createTaskButton" prefWidth="80.0" text="ADD" />
+                  <Button mnemonicParsing="false" onAction="#resetButton" prefWidth="80.0" text="RESET" />
+                  <Button mnemonicParsing="false" onAction="#cancelButton" prefWidth="80.0" text="CANCEL" />
               </items>
-               <cursor>
-                  <Cursor fx:constant="SE_RESIZE" />
-               </cursor>
             </ToolBar>
          </children>
       </VBox>

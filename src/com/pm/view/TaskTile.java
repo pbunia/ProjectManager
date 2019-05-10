@@ -53,7 +53,7 @@ public class TaskTile extends Pane {
 	public TaskTile(Long id, String userId, String groupId, String title, String comment, Category category,
 			LocalDate createDate, LocalDate finishDate, Priority priority, boolean finishStatus) {
 		this.id = id;
-		this.userId=userId;
+		this.userId = userId;
 		this.groupId = groupId;
 		this.title = title;
 		this.comment = comment;
@@ -61,7 +61,6 @@ public class TaskTile extends Pane {
 		this.createDate = createDate;
 		this.finishDate = finishDate;
 		this.priority = priority;
-		
 
 		setHBox1(category, createDate, finishDate, priority);
 		setVBox1(title, userId, comment);
@@ -71,42 +70,69 @@ public class TaskTile extends Pane {
 	}
 
 	public void setHBox1(Category category, LocalDate createDate, LocalDate finishDate, Priority priority) {
-		categoryLabel = new Label(category.toString());
-		createDateLabel = new Label(createDate.toString());
-		finishDateLabel = new Label(finishDate.toString());
-		priorityLabel = new Label(priority.toString());
+		if (category == null) {
+			categoryLabel = new Label("");
+		} else
+			categoryLabel = new Label(category.toString());
+
+		if (createDate == null) {
+			createDateLabel = new Label("##.##.##");
+		} else
+			createDateLabel = new Label(createDate.toString());
+
+		if (finishDate == null) {
+			finishDateLabel = new Label("##.##.##");
+		} else
+			finishDateLabel = new Label(finishDate.toString());
+
+		if (priority == null) {
+			priorityLabel = new Label("");
+		} else
+			priorityLabel = new Label(priority.toString());
 
 		hBox1.getChildren().addAll(categoryLabel, createDateLabel, finishDateLabel, priorityLabel);
 		hBox1.setSpacing(10);
 	}
 
 	public void setVBox1(String title, String userId, String comment) {
-		titleLabel = new Label(title);
-		userIdLabel = new Label("Utworzone przez: " + userId);
-		commentLabel = new Label(comment);
+		if (title == null) {
+			titleLabel = new Label("");
+		} else
+			titleLabel = new Label(title);
+
+		if (userId == null) {
+			userIdLabel = new Label("Utworzone przez: ");
+		} else
+			userIdLabel = new Label("Utworzone przez: " + userId);
+
+		if (comment == null) {
+			commentLabel = new Label("");
+		} else
+			commentLabel = new Label(comment);
+
 		commentLabel.setWrapText(true);
 		commentLabel.setMaxWidth(300);
 
 		vBox1.getChildren().addAll(titleLabel, userIdLabel, commentLabel, hBox1);
 		vBox1.setPrefWidth(300);
 	}
-	
+
 	public void setVBox2() {
 		delBtn = new Button("X");
-		delBtn.setOnAction(e->deleteTask());
+		delBtn.setOnAction(e -> deleteTask());
 		editBtn = new Button("E");
-		editBtn.setOnAction(e->showEditTaskScreen());
-		
+		editBtn.setOnAction(e -> showEditTaskScreen());
+
 		vBox2.getChildren().addAll(delBtn, editBtn);
 		vBox2.setSpacing(5);
 		vBox2.setAlignment(Pos.CENTER);
 	}
-	
+
 	public void setHBox2(boolean finishStatus) {
 		finishCB = new CheckBox();
 		finishCB.setPadding(new Insets(10));
 		finishCB.setSelected(finishStatus);
-		finishCB.setOnAction(e->changeStatus(finishCB.isSelected()));
+		finishCB.setOnAction(e -> changeStatus(finishCB.isSelected()));
 
 		hBox2.getChildren().addAll(finishCB, vBox1, vBox2);
 		hBox2.setSpacing(10);
@@ -121,77 +147,58 @@ public class TaskTile extends Pane {
 	public String getGroupId() {
 		return groupId;
 	}
-	
+
 	public void changeStatus(boolean finishStatus) {
 		PMClient client = new PMClient();
-		client.putTask(new Task(id, userId, groupId, title, comment, category,
-			createDate, finishDate, priority, finishStatus));
+		client.putTask(new Task(id, userId, groupId, title, comment, category, createDate, finishDate, priority,
+				finishStatus));
 	}
-	
+
 	public void deleteTask() {
 		PMClient client = new PMClient();
 		client.deleteTask(this.getTheId());
 	}
-	
+
 	public void showEditTaskScreen() {
 		Stage editDialogStage = new Stage();
 		PMClient client = new PMClient();
 		Task theTask = client.getTask(this.getTheId());
-		
+
 		ViewLoader<AnchorPane, EditTaskViewController> viewLoader = new ViewLoader<>("view/EditTaskView.fxml");
 		viewLoader.getController().setStage(editDialogStage);
 		viewLoader.getController().setTask(theTask);
 		AnchorPane anchorPane = viewLoader.getLayout();
-		Scene scene  = new Scene(anchorPane);
+		Scene scene = new Scene(anchorPane);
 		editDialogStage.setTitle("Edit");
 		editDialogStage.initModality(Modality.WINDOW_MODAL);
 		editDialogStage.setScene(scene);
 		editDialogStage.showAndWait();
-}
+	}
+
 	public void checkWhenFinish(boolean finishStatus) {
 		if (finishStatus) {
-			hBox2.setStyle("-fx-padding: 5;" + 
-	                "-fx-border-style: solid inside;" + 
-	                "-fx-border-width: 2;" +
-	                "-fx-border-insets: 5;" + 
-	                "-fx-border-radius: 5;" + 
-	                "-fx-border-color: #808080;");
-			titleLabel.setStyle( "-fx-text-fill:#CAC3C3;");
-			userIdLabel.setStyle( "-fx-text-fill:#CAC3C3;");
-			commentLabel.setStyle( "-fx-text-fill:#CAC3C3;");
-			categoryLabel.setStyle( "-fx-text-fill:#CAC3C3;");
-			createDateLabel.setStyle( "-fx-text-fill:#CAC3C3;");
-			finishDateLabel.setStyle( "-fx-text-fill:#CAC3C3;");
-			priorityLabel.setStyle( "-fx-text-fill:#CAC3C3;");
-			
-		}
-		else {
-			if (Period.between(createDate, finishDate).getDays()<2) {
-				hBox2.setStyle("-fx-padding: 5;" + 
-		                "-fx-border-style: solid inside;" + 
-		                "-fx-border-width: 2;" +
-		                "-fx-border-insets: 5;" + 
-		                "-fx-border-radius: 5;" + 
-		                "-fx-border-color: #D91F1F;");
-			}
-			else if (Period.between(createDate, finishDate).getDays()<5) {
-				hBox2.setStyle("-fx-padding: 5;" + 
-		                "-fx-border-style: solid inside;" + 
-		                "-fx-border-width: 2;" +
-		                "-fx-border-insets: 5;" + 
-		                "-fx-border-radius: 5;" + 
-		                "-fx-border-color: #FFFF00;");
-			}
-			else {
-				hBox2.setStyle("-fx-padding: 5;" + 
-		                "-fx-border-style: solid inside;" + 
-		                "-fx-border-width: 2;" +
-		                "-fx-border-insets: 5;" + 
-		                "-fx-border-radius: 5;" + 
-		                "-fx-border-color: #00FF00;");
+			hBox2.setStyle("-fx-padding: 5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;"
+					+ "-fx-border-insets: 5;" + "-fx-border-radius: 5;" + "-fx-border-color: #808080;");
+			titleLabel.setStyle("-fx-text-fill:#CAC3C3;");
+			userIdLabel.setStyle("-fx-text-fill:#CAC3C3;");
+			commentLabel.setStyle("-fx-text-fill:#CAC3C3;");
+			categoryLabel.setStyle("-fx-text-fill:#CAC3C3;");
+			createDateLabel.setStyle("-fx-text-fill:#CAC3C3;");
+			finishDateLabel.setStyle("-fx-text-fill:#CAC3C3;");
+			priorityLabel.setStyle("-fx-text-fill:#CAC3C3;");
+
+		} else {
+			if (Period.between(createDate, finishDate).getDays() < 2) {
+				hBox2.setStyle("-fx-padding: 5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;"
+						+ "-fx-border-insets: 5;" + "-fx-border-radius: 5;" + "-fx-border-color: #D91F1F;");
+			} else if (Period.between(createDate, finishDate).getDays() < 5) {
+				hBox2.setStyle("-fx-padding: 5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;"
+						+ "-fx-border-insets: 5;" + "-fx-border-radius: 5;" + "-fx-border-color: #FFFF00;");
+			} else {
+				hBox2.setStyle("-fx-padding: 5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;"
+						+ "-fx-border-insets: 5;" + "-fx-border-radius: 5;" + "-fx-border-color: #00FF00;");
 			}
 		}
 	}
-	
 
 }

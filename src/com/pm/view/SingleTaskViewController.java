@@ -9,9 +9,7 @@ import com.pm.model.task.Task;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -19,10 +17,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class SingleTaskViewController {
 	
 	private String userId;
+	private Stage stage;
 	
 	ObservableList<Priority> prioritylist = FXCollections.observableArrayList(Priority.values());
 	ObservableList<Category> categorylist = FXCollections.observableArrayList(Category.values());
@@ -53,15 +53,6 @@ public class SingleTaskViewController {
 	@FXML
 	private CheckBox cboxComplete;
 
-	@FXML
-	Button btnAdd;
-
-	@FXML
-	Button btnReset;
-
-	@FXML
-	Button btnCancel;
-
 	
 	
 	/*  @FXML private String dateCreationNow() {
@@ -76,24 +67,35 @@ public class SingleTaskViewController {
 		txtUserID.setText(userId);
 	}
 
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+	
 	@FXML
 	private void initialize() {
 		
 		comboBoxPriority.setItems(prioritylist);
 		comboBoxCategory.setItems(categorylist);
+		resetButton();
 	}
 	@FXML
-	public void cancelButton(ActionEvent event) {
-		Stage stage = (Stage) btnCancel.getScene().getWindow();
-		stage.close();
+	public void cancelButton() {
+		
+		stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
+		
+//		Stage stage = (Stage) btnCancel.getScene().getWindow();
+//		stage.close();
 
 	}
 	@FXML
-	public void resetButton(ActionEvent event) {
-		txtTitle.setText(null);
-		txtDescription.setText(null);
-		txtGroupID.setText(null);
-
+	public void resetButton() {
+		txtTitle.setText("Title");
+		txtDescription.setText("Comment");
+		txtGroupID.setText("GroupId");
+		dateCreation.setValue(LocalDate.now());
+		dateFinish.setValue(LocalDate.now());
+		comboBoxPriority.setValue(Priority.NORMALNY);
+		comboBoxCategory.setValue(Category.PRACA);
 	}
 	@FXML
 	public void createTaskButton () {
@@ -105,13 +107,14 @@ public class SingleTaskViewController {
 		LocalDate createDate = dateCreation.getValue();
 		LocalDate finishDate = dateFinish.getValue();
 		Priority priority = comboBoxPriority.getValue();
-		boolean finishStatus = cboxComplete.hasProperties();
+		boolean finishStatus = cboxComplete.isSelected();  //.hasProperties(); <- drobna zmiana a robi kolosaln¹ ró¿nicê
 		
 		
 		PMClient client = new PMClient();
 		client.postTask(new Task( this.userId, groupId, title, comment, category,
 				createDate, finishDate, priority, finishStatus));
 		
+		stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
 	
 	}
 		
