@@ -15,12 +15,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class SingleTaskViewController {
-
+	
+	private String userId;
+	
 	ObservableList<Priority> prioritylist = FXCollections.observableArrayList(Priority.values());
 	ObservableList<Category> categorylist = FXCollections.observableArrayList(Category.values());
 // these are items on SingleTaskView form
@@ -30,7 +33,7 @@ public class SingleTaskViewController {
 	private TextArea txtDescription;
 
 	@FXML
-	private TextField txtUserID;
+	private Label txtUserID;
 
 	@FXML
 	private TextField txtGroupID;
@@ -68,6 +71,10 @@ public class SingleTaskViewController {
 	  
 	  } */
 	 
+	public void setUserId(String userId) {
+		this.userId = userId;
+		txtUserID.setText(userId);
+	}
 
 	@FXML
 	private void initialize() {
@@ -85,15 +92,12 @@ public class SingleTaskViewController {
 	public void resetButton(ActionEvent event) {
 		txtTitle.setText(null);
 		txtDescription.setText(null);
-		txtUserID.setText(null);
 		txtGroupID.setText(null);
 
 	}
 	@FXML
 	public void createTaskButton () {
 		
-		
-		String userId = txtUserID.getText();
 		String groupId = txtGroupID.getText();
 		String title = txtTitle.getText();
 		String comment = txtDescription.getText();
@@ -105,7 +109,7 @@ public class SingleTaskViewController {
 		
 		
 		PMClient client = new PMClient();
-		client.postTask(new Task( userId, groupId, title, comment, category,
+		client.postTask(new Task( this.userId, groupId, title, comment, category,
 				createDate, finishDate, priority, finishStatus));
 		
 	

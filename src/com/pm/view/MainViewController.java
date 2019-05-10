@@ -11,6 +11,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -19,9 +20,18 @@ import javafx.util.Duration;
 
 public class MainViewController {
 
+	private String userId;
+	
+	@FXML
+	private ScrollPane SPane;
+	
 	@FXML
 	private VBox vBoxSB;
 
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	
 	@FXML
 	public void refresh() {
 
@@ -45,6 +55,7 @@ public class MainViewController {
 	private void addTaskButton() {
 		Stage addDialogStage = new Stage();
 		ViewLoader<AnchorPane, SingleTaskViewController> viewLoader = new ViewLoader<>("view/SingleTaskView.fxml");
+		viewLoader.getController().setUserId(userId);
 		AnchorPane anchorPane = viewLoader.getLayout();
 		Scene scene  = new Scene(anchorPane);
 		
@@ -52,16 +63,6 @@ public class MainViewController {
 		addDialogStage.initModality(Modality.WINDOW_MODAL);
 		addDialogStage.setScene(scene);
 		addDialogStage.showAndWait();
-	}
-	
-	@FXML
-	public void removeTaskButton() {
-
-	}
-	
-	@FXML
-	public void editTaskButton() {
-
 	}
 	
 	@FXML

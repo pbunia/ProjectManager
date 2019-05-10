@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -18,12 +16,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pm.view.SingleTaskViewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pm.view.SingleTaskViewController">
    <children>
       <VBox fillWidth="false" layoutX="200.0" layoutY="80.0" minHeight="-Infinity" prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <TextField fx:id="txtTitle" prefHeight="31.0" prefWidth="651.0" text="Title..." />
-            <TextArea fx:id="txtDescription" prefHeight="409.0" prefWidth="600.0" text="Comment..." VBox.vgrow="ALWAYS" />
+            <TextArea fx:id="txtDescription" prefHeight="409.0" prefWidth="600.0" text="Comment..." wrapText="true" VBox.vgrow="ALWAYS" />
             <GridPane prefHeight="215.0" prefWidth="600.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="124.0" />
@@ -64,12 +62,10 @@
                   <DatePicker fx:id="dateCreation" editable="false" promptText="pick start date" GridPane.columnIndex="3" />
                   <DatePicker fx:id="dateFinish" promptText="pick finish date" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <CheckBox fx:id="cboxComplete" mnemonicParsing="false" text="Task Completed" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Label text="Task ID" GridPane.halignment="CENTER" />
-                  <Label fx:id="lblTaskid" text="ID Number" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                  <Label alignment="CENTER" text="User ID" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" text="User ID" GridPane.halignment="CENTER" />
                   <Label text="Group ID" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <TextField fx:id="txtUserID" text="user ID" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                   <TextField fx:id="txtGroupID" text="group ID" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Label fx:id="txtUserID" text="User ID" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                </children>
             </GridPane>
             <ToolBar prefHeight="28.0" prefWidth="600.0" VBox.vgrow="NEVER">

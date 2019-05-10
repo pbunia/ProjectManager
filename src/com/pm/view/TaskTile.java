@@ -1,6 +1,7 @@
 package com.pm.view;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 import com.pm.ViewLoader;
 import com.pm.model.client.PMClient;
@@ -8,6 +9,8 @@ import com.pm.model.task.Category;
 import com.pm.model.task.Priority;
 import com.pm.model.task.Task;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -85,6 +88,7 @@ public class TaskTile extends Pane {
 		commentLabel.setMaxWidth(300);
 
 		vBox1.getChildren().addAll(titleLabel, userIdLabel, commentLabel, hBox1);
+		vBox1.setPrefWidth(300);
 	}
 	
 	public void setVBox2() {
@@ -95,15 +99,19 @@ public class TaskTile extends Pane {
 		
 		vBox2.getChildren().addAll(delBtn, editBtn);
 		vBox2.setSpacing(5);
+		vBox2.setAlignment(Pos.CENTER);
 	}
 	
 	public void setHBox2(boolean finishStatus) {
 		finishCB = new CheckBox();
+		finishCB.setPadding(new Insets(10));
 		finishCB.setSelected(finishStatus);
 		finishCB.setOnAction(e->changeStatus(finishCB.isSelected()));
 
 		hBox2.getChildren().addAll(finishCB, vBox1, vBox2);
-		hBox2.setSpacing(20);
+		hBox2.setSpacing(10);
+		hBox2.setAlignment(Pos.CENTER);
+		checkWhenFinish(finishStatus);
 	}
 
 	public Long getTheId() {
@@ -140,6 +148,50 @@ public class TaskTile extends Pane {
 		editDialogStage.setScene(scene);
 		editDialogStage.showAndWait();
 }
+	public void checkWhenFinish(boolean finishStatus) {
+		if (finishStatus) {
+			hBox2.setStyle("-fx-padding: 5;" + 
+	                "-fx-border-style: solid inside;" + 
+	                "-fx-border-width: 2;" +
+	                "-fx-border-insets: 5;" + 
+	                "-fx-border-radius: 5;" + 
+	                "-fx-border-color: #808080;");
+			titleLabel.setStyle( "-fx-text-fill:#CAC3C3;");
+			userIdLabel.setStyle( "-fx-text-fill:#CAC3C3;");
+			commentLabel.setStyle( "-fx-text-fill:#CAC3C3;");
+			categoryLabel.setStyle( "-fx-text-fill:#CAC3C3;");
+			createDateLabel.setStyle( "-fx-text-fill:#CAC3C3;");
+			finishDateLabel.setStyle( "-fx-text-fill:#CAC3C3;");
+			priorityLabel.setStyle( "-fx-text-fill:#CAC3C3;");
+			
+		}
+		else {
+			if (Period.between(createDate, finishDate).getDays()<2) {
+				hBox2.setStyle("-fx-padding: 5;" + 
+		                "-fx-border-style: solid inside;" + 
+		                "-fx-border-width: 2;" +
+		                "-fx-border-insets: 5;" + 
+		                "-fx-border-radius: 5;" + 
+		                "-fx-border-color: #D91F1F;");
+			}
+			else if (Period.between(createDate, finishDate).getDays()<5) {
+				hBox2.setStyle("-fx-padding: 5;" + 
+		                "-fx-border-style: solid inside;" + 
+		                "-fx-border-width: 2;" +
+		                "-fx-border-insets: 5;" + 
+		                "-fx-border-radius: 5;" + 
+		                "-fx-border-color: #FFFF00;");
+			}
+			else {
+				hBox2.setStyle("-fx-padding: 5;" + 
+		                "-fx-border-style: solid inside;" + 
+		                "-fx-border-width: 2;" +
+		                "-fx-border-insets: 5;" + 
+		                "-fx-border-radius: 5;" + 
+		                "-fx-border-color: #00FF00;");
+			}
+		}
+	}
 	
 
 }

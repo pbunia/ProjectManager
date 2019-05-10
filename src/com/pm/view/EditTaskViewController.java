@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -20,7 +21,7 @@ public class EditTaskViewController {
 
 	@FXML private TextField txtTitle;
 	@FXML private TextArea txtDescription;
-	@FXML private TextField txtUserID;
+	@FXML private Label txtUserID;
 	@FXML private TextField txtGroupID;
 	@FXML private ComboBox<Category> comboBoxCategory;
 	@FXML private ComboBox<Priority> comboBoxPriority;

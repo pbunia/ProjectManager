@@ -28,8 +28,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
-		ViewLoader<AnchorPane, MainViewController> viewLoader = new ViewLoader<>("view/TasksView.fxml");
+		
 
+		
+		
 		Dialog<Pair<String, String>> dialog = new Dialog<>();
 		dialog.setTitle("Project Manager");
 		dialog.setHeaderText("USER LOGIN");
@@ -78,14 +80,18 @@ public class Main extends Application {
 
 		result.ifPresent(usernamePassword -> {
 			System.out.println("Username=" + usernamePassword.getKey() + ", Password=" + usernamePassword.getValue());
+		
+			ViewLoader<AnchorPane, MainViewController> viewLoader = new ViewLoader<>("view/TasksView.fxml");
+			viewLoader.getController().setUserId(usernamePassword.getKey());
+			
+			AnchorPane anchorPane = viewLoader.getLayout();
+
+			Scene scene = new Scene(anchorPane);
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Project Manager");
+			primaryStage.show();
+		
 		});
-
-		AnchorPane anchorPane = viewLoader.getLayout();
-
-		Scene scene = new Scene(anchorPane);
-		primaryStage.setScene(scene);
-		primaryStage.setTitle("Project Manager");
-		primaryStage.show();
 
 	}
 
