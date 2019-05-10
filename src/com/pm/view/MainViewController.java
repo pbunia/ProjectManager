@@ -1,5 +1,7 @@
 package com.pm.view;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.pm.ViewLoader;
@@ -39,7 +41,14 @@ public class MainViewController {
 
 		PMClient client = new PMClient();
 		List<Task> tasks = client.getAllTasks();
-
+		Collections.sort(tasks, new Comparator<Task>() {
+		    @Override
+		    public int compare(Task t1, Task t2) {
+		        boolean b1 = t1.isFinishStatus();
+		        boolean b2 = t2.isFinishStatus();
+		        return Boolean.compare(b1, b2);
+		    }
+		});
 		TaskTile taskTile[] = new TaskTile[tasks.size()];
 
 		for (int i = 0; i < tasks.size(); i++) {
