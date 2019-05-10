@@ -7,6 +7,7 @@ import com.pm.model.task.Category;
 import com.pm.model.task.Priority;
 import com.pm.model.task.Task;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -22,7 +23,7 @@ public class EditTaskViewController {
 	@FXML private TextField txtTitle;
 	@FXML private TextArea txtDescription;
 	@FXML private Label txtUserID;
-	@FXML private TextField txtGroupID;
+	@FXML private ComboBox<String> comboBoxGroupID;
 	@FXML private ComboBox<Category> comboBoxCategory;
 	@FXML private ComboBox<Priority> comboBoxPriority;
 	@FXML private DatePicker dateCreation;
@@ -31,6 +32,7 @@ public class EditTaskViewController {
 	 	
 	private Stage stage;
 	private Task theTask;
+	private ObservableList<String> projectList;
 	
 	@FXML
 	private void initialize() {
@@ -40,7 +42,7 @@ public class EditTaskViewController {
 	
 	public void loadTask() {
 		txtUserID.setText(theTask.getUserId());
-		txtGroupID.setText(theTask.getGroupId());
+		comboBoxGroupID.setValue(theTask.getGroupId());
 		txtTitle.setText(theTask.getTitle());
 		txtDescription.setText(theTask.getComment());
 		comboBoxCategory.setValue(theTask.getCategory());
@@ -59,6 +61,11 @@ public class EditTaskViewController {
 		loadTask();
 	}
 	
+	public void setProjectList(ObservableList<String> projectList) {
+		this.projectList = projectList;
+		comboBoxGroupID.setItems(this.projectList);
+	}
+	
 	@FXML
 	public void cancelButton() {
 		stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
@@ -67,7 +74,7 @@ public class EditTaskViewController {
 	@FXML
 	public void createTaskButton () {
 		String userId = txtUserID.getText();
-		String groupId = txtGroupID.getText();
+		String groupId = comboBoxGroupID.getValue();
 		String title = txtTitle.getText();
 		String comment = txtDescription.getText();
 		Category category = comboBoxCategory.getValue();

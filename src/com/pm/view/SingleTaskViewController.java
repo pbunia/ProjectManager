@@ -23,6 +23,7 @@ public class SingleTaskViewController {
 	
 	private String userId;
 	private Stage stage;
+	private ObservableList<String> projectList;
 	
 	ObservableList<Priority> prioritylist = FXCollections.observableArrayList(Priority.values());
 	ObservableList<Category> categorylist = FXCollections.observableArrayList(Category.values());
@@ -36,7 +37,7 @@ public class SingleTaskViewController {
 	private Label txtUserID;
 
 	@FXML
-	private TextField txtGroupID;
+	private ComboBox<String> comboBoxGroupID;
 
 	@FXML
 	private ComboBox<Category> comboBoxCategory;
@@ -71,6 +72,12 @@ public class SingleTaskViewController {
 		this.stage = stage;
 	}
 	
+	public void setProjectList(ObservableList<String> projectList) {
+		projectList.remove("Wszystkie");
+		this.projectList = projectList;
+		comboBoxGroupID.setItems(this.projectList);
+	}
+	
 	@FXML
 	private void initialize() {
 		
@@ -91,7 +98,7 @@ public class SingleTaskViewController {
 	public void resetButton() {
 		txtTitle.setText("Title");
 		txtDescription.setText("Comment");
-		txtGroupID.setText("GroupId");
+		comboBoxGroupID.setValue("GroupId");
 		dateCreation.setValue(LocalDate.now());
 		dateFinish.setValue(LocalDate.now());
 		comboBoxPriority.setValue(Priority.NORMALNY);
@@ -100,7 +107,7 @@ public class SingleTaskViewController {
 	@FXML
 	public void createTaskButton () {
 		
-		String groupId = txtGroupID.getText();
+		String groupId = comboBoxGroupID.getValue();
 		String title = txtTitle.getText();
 		String comment = txtDescription.getText();
 		Category category = comboBoxCategory.getValue();

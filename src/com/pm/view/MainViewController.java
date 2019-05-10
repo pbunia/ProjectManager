@@ -1,6 +1,5 @@
 package com.pm.view;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -89,6 +88,7 @@ public class MainViewController {
 		Stage addDialogStage = new Stage();
 		ViewLoader<AnchorPane, SingleTaskViewController> viewLoader = new ViewLoader<>("view/SingleTaskView.fxml");
 		viewLoader.getController().setUserId(userId);
+		viewLoader.getController().setProjectList(projectList);
 		viewLoader.getController().setStage(addDialogStage);
 		AnchorPane anchorPane = viewLoader.getLayout();
 		Scene scene = new Scene(anchorPane);

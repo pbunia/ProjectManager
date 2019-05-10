@@ -2,6 +2,7 @@ package com.pm.view;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 import com.pm.ViewLoader;
 import com.pm.model.client.PMClient;
@@ -9,6 +10,8 @@ import com.pm.model.task.Category;
 import com.pm.model.task.Priority;
 import com.pm.model.task.Task;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -163,10 +166,19 @@ public class TaskTile extends Pane {
 		Stage editDialogStage = new Stage();
 		PMClient client = new PMClient();
 		Task theTask = client.getTask(this.getTheId());
+		List<Task> tasks = client.getAllTasks();
+		
+		ObservableList<String> projectName = FXCollections.observableArrayList();
+		for (Task t : tasks) {
+			if(!projectName.contains(t.getGroupId()))
+			projectName.add(t.getGroupId());
+		}
+		
 
 		ViewLoader<AnchorPane, EditTaskViewController> viewLoader = new ViewLoader<>("view/EditTaskView.fxml");
 		viewLoader.getController().setStage(editDialogStage);
 		viewLoader.getController().setTask(theTask);
+		viewLoader.getController().setProjectList(projectName);
 		AnchorPane anchorPane = viewLoader.getLayout();
 		Scene scene = new Scene(anchorPane);
 		editDialogStage.setTitle("Edit");

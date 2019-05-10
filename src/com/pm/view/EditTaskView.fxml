@@ -63,8 +63,12 @@
                   <CheckBox fx:id="cboxComplete" mnemonicParsing="false" text="Task Completed" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                   <Label alignment="CENTER" text="User ID" GridPane.halignment="CENTER" />
                   <Label text="Group ID" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <TextField fx:id="txtGroupID" text="group ID" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                   <Label fx:id="txtUserID" alignment="CENTER" text="User ID" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                  <ComboBox fx:id="comboBoxGroupID" editable="true" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="29.0" prefWidth="117.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </ComboBox>
                </children>
             </GridPane>
             <ToolBar prefHeight="28.0" prefWidth="600.0" VBox.vgrow="NEVER">
