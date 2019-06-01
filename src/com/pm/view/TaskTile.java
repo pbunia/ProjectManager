@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.pm.ViewLoader;
 import com.pm.model.client.PMClient;
 import com.pm.model.task.Category;
@@ -49,9 +51,9 @@ public class TaskTile extends Pane {
 	private Label titleLabel;
 	private Label userIdLabel;
 	private Label commentLabel;
-	private CheckBox finishCB;
-	private Button delBtn;
-	private Button editBtn;
+	private JFXCheckBox finishCB;
+	private JFXButton delBtn;
+	private JFXButton editBtn;
 
 	public TaskTile(Long id, String userId, String groupId, String title, String comment, Category category,
 			LocalDate createDate, LocalDate finishDate, Priority priority, boolean finishStatus) {
@@ -102,11 +104,13 @@ public class TaskTile extends Pane {
 			titleLabel = new Label("");
 		} else
 			titleLabel = new Label(title);
+			titleLabel.setStyle("-fx-font-size: 20px;");
+			titleLabel.setStyle("-fx-underline: true;");
 
 		if (userId == null) {
-			userIdLabel = new Label("Utworzone przez: ");
+			userIdLabel = new Label("Created by: ");
 		} else
-			userIdLabel = new Label("Utworzone przez: " + userId);
+			userIdLabel = new Label("Created by: " + userId);
 
 		if (comment == null) {
 			commentLabel = new Label("");
@@ -117,13 +121,15 @@ public class TaskTile extends Pane {
 		commentLabel.setMaxWidth(300);
 
 		vBox1.getChildren().addAll(titleLabel, userIdLabel, commentLabel, hBox1);
-		vBox1.setPrefWidth(300);
+		vBox1.setPrefWidth(525); // 685
 	}
 
 	public void setVBox2() {
-		delBtn = new Button("X");
+		delBtn = new JFXButton("X");
+		delBtn.setStyle("-fx-background-color: #E5E7E9;" + "-fx-text-fill: #212121;" + "-fx-font-weight: bold;" + "-fx-background-radius: 15px");
 		delBtn.setOnAction(e -> deleteTask());
-		editBtn = new Button("E");
+		editBtn = new JFXButton("E");
+		editBtn.setStyle("-fx-background-color: #E5E7E9;" + "-fx-text-fill: #212121;" + "-fx-font-weight: bold;" + "-fx-background-radius: 15px");
 		editBtn.setOnAction(e -> showEditTaskScreen());
 
 		vBox2.getChildren().addAll(delBtn, editBtn);
@@ -132,7 +138,8 @@ public class TaskTile extends Pane {
 	}
 
 	public void setHBox2(boolean finishStatus) {
-		finishCB = new CheckBox();
+		finishCB = new JFXCheckBox();
+		finishCB.setStyle("-jfx-unchecked-color: #e5e7e9;");
 		finishCB.setPadding(new Insets(10));
 		finishCB.setSelected(finishStatus);
 		finishCB.setOnAction(e -> changeStatus(finishCB.isSelected()));
@@ -167,13 +174,12 @@ public class TaskTile extends Pane {
 		PMClient client = new PMClient();
 		Task theTask = client.getTask(this.getTheId());
 		List<Task> tasks = client.getAllTasks();
-		
+
 		ObservableList<String> projectName = FXCollections.observableArrayList();
 		for (Task t : tasks) {
-			if(!projectName.contains(t.getGroupId()))
-			projectName.add(t.getGroupId());
+			if (!projectName.contains(t.getGroupId()))
+				projectName.add(t.getGroupId());
 		}
-		
 
 		ViewLoader<AnchorPane, EditTaskViewController> viewLoader = new ViewLoader<>("view/EditTaskView.fxml");
 		viewLoader.getController().setStage(editDialogStage);
@@ -184,6 +190,7 @@ public class TaskTile extends Pane {
 		editDialogStage.setTitle("Edit");
 		editDialogStage.initModality(Modality.WINDOW_MODAL);
 		editDialogStage.setScene(scene);
+		editDialogStage.setResizable(false);
 		editDialogStage.showAndWait();
 	}
 
@@ -198,7 +205,6 @@ public class TaskTile extends Pane {
 			createDateLabel.setStyle("-fx-text-fill:#CAC3C3;");
 			finishDateLabel.setStyle("-fx-text-fill:#CAC3C3;");
 			priorityLabel.setStyle("-fx-text-fill:#CAC3C3;");
-
 		} else {
 			if (Period.between(createDate, finishDate).getDays() < 2) {
 				hBox2.setStyle("-fx-padding: 5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;"

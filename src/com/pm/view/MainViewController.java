@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.pm.ViewLoader;
 import com.pm.model.client.PMClient;
 import com.pm.model.task.Task;
@@ -15,7 +16,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -33,9 +33,9 @@ public class MainViewController {
 
 	@FXML
 	private VBox vBoxSB;
-	
+
 	@FXML
-	private ComboBox<String> projectCB;
+	private JFXComboBox<String> projectCB;
 
 	public void setUserId(String userId) {
 		this.userId = userId;
@@ -43,7 +43,6 @@ public class MainViewController {
 
 	@FXML
 	public void refresh() {
-		
 		PMClient client = new PMClient();
 		List<Task> tasks = client.getAllTasks();
 		Collections.sort(tasks, new Comparator<Task>() {
@@ -54,30 +53,33 @@ public class MainViewController {
 				return Boolean.compare(b1, b2);
 			}
 		});
-		ObservableList<String> projectName = FXCollections.observableArrayList("Wszystkie");
+
+		ObservableList<String> projectName = FXCollections.observableArrayList("All Groups");
 		for (Task t : tasks) {
-			if(!projectName.contains(t.getGroupId()))
-			projectName.add(t.getGroupId());
+			if (!projectName.contains(t.getGroupId()))
+				projectName.add(t.getGroupId());
 		}
+
 		projectList = projectName;
 		projectCB.setItems(projectList);
-		
+
 		vBoxSB.getChildren().clear();
 		TaskTile taskTile[] = new TaskTile[tasks.size()];
 
 		for (int i = 0; i < tasks.size(); i++) {
-			if(projectCB.getValue()==null || projectCB.getValue().equals("Wszystkie"))
-			taskTile[i] = new TaskTile(tasks.get(i).getId(), tasks.get(i).getUserId(), tasks.get(i).getGroupId(),
-					tasks.get(i).getTitle(), tasks.get(i).getComment(), tasks.get(i).getCategory(),
-					tasks.get(i).getCreateDate(), tasks.get(i).getFinishDate(), tasks.get(i).getPriority(),
-					tasks.get(i).isFinishStatus());
+			if (projectCB.getValue() == null || projectCB.getValue().equals("Wszystkie"))
+				taskTile[i] = new TaskTile(tasks.get(i).getId(), tasks.get(i).getUserId(), tasks.get(i).getGroupId(),
+						tasks.get(i).getTitle(), tasks.get(i).getComment(), tasks.get(i).getCategory(),
+						tasks.get(i).getCreateDate(), tasks.get(i).getFinishDate(), tasks.get(i).getPriority(),
+						tasks.get(i).isFinishStatus());
 			else {
-				if(projectCB.getValue().equals(tasks.get(i).getGroupId()))
-					taskTile[i] = new TaskTile(tasks.get(i).getId(), tasks.get(i).getUserId(), tasks.get(i).getGroupId(),
-							tasks.get(i).getTitle(), tasks.get(i).getComment(), tasks.get(i).getCategory(),
-							tasks.get(i).getCreateDate(), tasks.get(i).getFinishDate(), tasks.get(i).getPriority(),
-							tasks.get(i).isFinishStatus());
-				else continue;
+				if (projectCB.getValue().equals(tasks.get(i).getGroupId()))
+					taskTile[i] = new TaskTile(tasks.get(i).getId(), tasks.get(i).getUserId(),
+							tasks.get(i).getGroupId(), tasks.get(i).getTitle(), tasks.get(i).getComment(),
+							tasks.get(i).getCategory(), tasks.get(i).getCreateDate(), tasks.get(i).getFinishDate(),
+							tasks.get(i).getPriority(), tasks.get(i).isFinishStatus());
+				else
+					continue;
 			}
 			vBoxSB.getChildren().add(taskTile[i]);
 		}
@@ -95,13 +97,14 @@ public class MainViewController {
 		addDialogStage.setTitle("Add new Task");
 		addDialogStage.initModality(Modality.WINDOW_MODAL);
 		addDialogStage.setScene(scene);
+		addDialogStage.setResizable(false);
 		addDialogStage.showAndWait();
 	}
 
 	@FXML
 	public void initialize() {
 		refresh();
-		projectCB.setValue("Wszystkie");
+		projectCB.setPromptText("All Groups");
 		Runnable r = () -> {
 			Timeline timeline = new Timeline(new KeyFrame(Duration.millis(2500), ae -> refresh()));
 			timeline.setCycleCount(Animation.INDEFINITE);
@@ -110,6 +113,5 @@ public class MainViewController {
 		Thread t = new Thread(r);
 		t.start();
 	}
-	
-	
+
 }
