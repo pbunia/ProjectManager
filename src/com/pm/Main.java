@@ -17,6 +17,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -81,7 +82,8 @@ public class Main extends Application {
 
 			Scene scene = new Scene(anchorPane);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("MENED¯ER ZADAÑ");
+			primaryStage.getIcons().add(new Image("/images/Logo-icon-32x.png"));
+			primaryStage.setTitle(" MENED¯ER ZADAÑ");
 			primaryStage.setResizable(false);
 			primaryStage.show();
 		});

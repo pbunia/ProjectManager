@@ -18,6 +18,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -187,7 +188,8 @@ public class TaskTile extends Pane {
 		viewLoader.getController().setProjectList(projectName);
 		AnchorPane anchorPane = viewLoader.getLayout();
 		Scene scene = new Scene(anchorPane);
-		editDialogStage.setTitle("Edit");
+		editDialogStage.setTitle(" EDYCJA ZADANIA");
+		editDialogStage.getIcons().add(new Image("/images/Logo-icon-32x.png"));
 		editDialogStage.initModality(Modality.WINDOW_MODAL);
 		editDialogStage.setScene(scene);
 		editDialogStage.setResizable(false);

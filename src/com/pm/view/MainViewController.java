@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -94,7 +95,8 @@ public class MainViewController {
 		viewLoader.getController().setStage(addDialogStage);
 		AnchorPane anchorPane = viewLoader.getLayout();
 		Scene scene = new Scene(anchorPane);
-		addDialogStage.setTitle("Dodaj nowe zadanie");
+		addDialogStage.setTitle(" DODAWANIE NOWEGO ZADANIA");
+		addDialogStage.getIcons().add(new Image("/images/Logo-icon-32x.png"));
 		addDialogStage.initModality(Modality.WINDOW_MODAL);
 		addDialogStage.setScene(scene);
 		addDialogStage.setResizable(false);
