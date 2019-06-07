@@ -120,7 +120,7 @@ public class TaskTile extends Pane {
 		commentLabel.setMaxWidth(300);
 
 		vBox1.getChildren().addAll(titleLabel, userIdLabel, commentLabel, hBox1);
-		vBox1.setPrefWidth(525);
+		vBox1.setPrefWidth(505); //525
 	}
 
 	public void setVBox2() {
