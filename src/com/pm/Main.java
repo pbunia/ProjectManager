@@ -22,6 +22,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
+
+/**Main class launching entire program ,implementing Login window 
+ * 
+ * @author ireneusz seredyn
+ *
+ */
 public class Main extends Application {
 
 	@Override
@@ -74,7 +80,7 @@ public class Main extends Application {
 		result.ifPresent(usernamePassword -> {
 			System.out
 					.println("Uzytkownik = " + usernamePassword.getKey() + ", Haslo = " + usernamePassword.getValue());
-
+			
 			ViewLoader<AnchorPane, MainViewController> viewLoader = new ViewLoader<>("view/TasksView.fxml");
 			viewLoader.getController().setUserId(usernamePassword.getKey());
 

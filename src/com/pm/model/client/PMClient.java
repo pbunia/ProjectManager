@@ -20,6 +20,11 @@ import javax.ws.rs.core.UriBuilder;
 
 import com.pm.model.task.Task;
 
+/**This class communicates with server via 4 methods GET POST PUT DELETE
+ * 
+ * @author Mateusz Szyprowski
+ *
+ */
 public class PMClient {
 
 	private List<Task> tasks;
@@ -27,7 +32,10 @@ public class PMClient {
 
 	public PMClient() {
 	}
-
+	/**
+	 * This is GET method that rerives all tasks saved on server
+	 * @return Tasks saved/available on server
+	 */
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)
 	public List<Task> getAllTasks() {
@@ -39,7 +47,11 @@ public class PMClient {
 		});
 		return tasks;
 	}
-
+	/**
+	 * This is 2nd GET method that retrives all available tasks with allocated ID number
+	 * @param index request to retrive exacly specified item/task
+	 * @return task program retrives exact task
+	 */
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Task getTask(Long index) {
@@ -50,7 +62,10 @@ public class PMClient {
 		task = webTarget.request().accept(MediaType.APPLICATION_JSON).get(Task.class);
 		return task;
 	}
-
+	/**
+	 * Method that is called when new task is created
+	 * @param task Send request to save/store new task at the origin server
+	 */
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	public void postTask(Task task) {
@@ -59,7 +74,10 @@ public class PMClient {
 		WebTarget webTarget = client.target(uri);
 		webTarget.request(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).post(Entity.json(task));
 	}
-
+	/**
+	 * Method used generally to updated existing data
+	 * @param task Sends request to update existing record' details  and the origin server r
+	 */
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	public void putTask(Task task) {
@@ -68,7 +86,10 @@ public class PMClient {
 		WebTarget webTarget = client.target(uri);
 		webTarget.request(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).put(Entity.json(task));
 	}
-
+	/**
+	 * Method called in order to delete existing record from the origin server
+	 * @param index Call reuest to delete exacly specified record 
+	 */
 	@DELETE
 	public void deleteTask(Long index) {
 		Client client = ClientBuilder.newClient();

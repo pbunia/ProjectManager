@@ -24,6 +24,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ * Class defines actions to objects on the main screen (Screen that holds list of all created tasks)
+ * @author Mateusz Szyprowski
+ *
+ */
 public class MainViewController {
 
 	private String userId;
@@ -41,7 +46,9 @@ public class MainViewController {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
+	/**
+	 * Method initiate GET method and retrives all tasks saved on server
+	 */
 	@FXML
 	public void refresh() {
 		PMClient client = new PMClient();
@@ -85,7 +92,9 @@ public class MainViewController {
 			vBoxSB.getChildren().add(taskTile[i]);
 		}
 	}
-
+	/**
+	 * method assocated to the button and it initialize new windoow with task attibuted to add
+	 */
 	@FXML
 	private void addTaskButton() {
 		Stage addDialogStage = new Stage();
@@ -102,7 +111,10 @@ public class MainViewController {
 		addDialogStage.setResizable(false);
 		addDialogStage.showAndWait();
 	}
-
+	/**
+	 * method initiates refresh method within time loop that activates automatiaclly and retrives list of saved tasks
+	 * @return t.start launch thread for task lists refresh
+	 */
 	@FXML
 	public void initialize() {
 		refresh();

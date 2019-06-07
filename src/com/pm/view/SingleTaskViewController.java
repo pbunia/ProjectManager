@@ -1,5 +1,9 @@
 package com.pm.view;
 
+
+/**Class defines actions to the objects (like buttons) in relation to the creation of the task by setting it's attributes
+ * @author ireneusz Seredyn
+ */
 import java.time.LocalDate;
 
 import com.jfoenix.controls.JFXCheckBox;
@@ -65,20 +69,28 @@ public class SingleTaskViewController {
 		this.projectList = projectList;
 		comboBoxGroupID.setItems(this.projectList);
 	}
-
+	
+	/**
+	 * method initiate combo objects for pririty and category enum classes used as one of the attributes defining task
+	 */
 	@FXML
 	private void initialize() {
 		comboBoxPriority.getItems().setAll(Priority.values());
 		comboBoxCategory.getItems().setAll(Category.values());
 		resetButton();
-	}
-
+	}		
+	/**
+	 * method that is associated to the button that cancel/closes the task window without saving it on server
+	 */
 	@FXML
 	public void cancelButton() {
 		stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
 
 	}
-
+	/**
+	 * method that clears/reset all filled attributes defining a new task before it's  submitted/created
+	 * 
+	 */
 	@FXML
 	public void resetButton() {
 		txtTitle.setText("Tytul zadania...");
@@ -89,7 +101,9 @@ public class SingleTaskViewController {
 		comboBoxPriority.setValue(Priority.NORMALNY);
 		comboBoxCategory.setValue(Category.PRACA);
 	}
-
+	/**
+	 * Method initialised by a button that creates a task upon completing all the fields with it's assicated attributes
+	 */
 	@FXML
 	public void createTaskButton() {
 		String groupId = comboBoxGroupID.getValue();

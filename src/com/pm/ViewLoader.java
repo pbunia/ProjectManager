@@ -1,5 +1,8 @@
 package com.pm;
 
+/**This is FXML loader class
+ * @author Piotr Bunia
+ */
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
