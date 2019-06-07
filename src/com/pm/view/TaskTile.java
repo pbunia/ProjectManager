@@ -107,9 +107,9 @@ public class TaskTile extends Pane {
 		titleLabel.setStyle("-fx-underline: true;");
 
 		if (userId == null) {
-			userIdLabel = new Label("Za³o¿one przez: ");
+			userIdLabel = new Label("Zalozone przez: ");
 		} else
-			userIdLabel = new Label("Za³o¿one przez: " + userId);
+			userIdLabel = new Label("Zalozone przez: " + userId);
 
 		if (comment == null) {
 			commentLabel = new Label("");

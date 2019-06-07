@@ -24,9 +24,6 @@ public class SingleTaskViewController {
 	private Stage stage;
 	private ObservableList<String> projectList;
 
-//	ObservableList<Priority> prioritylist = FXCollections.observableArrayList(Priority.values());
-//	ObservableList<Category> categorylist = FXCollections.observableArrayList(Category.values());
-// these are items on SingleTaskView form
 	@FXML
 	private JFXTextField txtTitle;
 
@@ -54,15 +51,6 @@ public class SingleTaskViewController {
 	@FXML
 	private JFXCheckBox cboxComplete;
 
-	/*
-	 * @FXML private String dateCreationNow() {
-	 * 
-	 * String date = String.valueOf(LocalDate.now()); System.out.println(date);
-	 * return date;
-	 * 
-	 * }
-	 */
-
 	public void setUserId(String userId) {
 		this.userId = userId;
 		txtUserID.setText(userId);
@@ -89,13 +77,11 @@ public class SingleTaskViewController {
 	public void cancelButton() {
 		stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
 
-//		Stage stage = (Stage) btnCancel.getScene().getWindow();
-//		stage.close();
 	}
 
 	@FXML
 	public void resetButton() {
-		txtTitle.setText("Tytu³ zadania...");
+		txtTitle.setText("Tytul zadania...");
 		txtDescription.setText("Opis zadania...");
 		comboBoxGroupID.setValue("Projekt");
 		dateCreation.setValue(LocalDate.now());

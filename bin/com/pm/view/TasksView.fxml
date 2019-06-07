@@ -29,7 +29,7 @@
 								<Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
 							</padding>
          <children>
-      								<Label alignment="CENTER" contentDisplay="CENTER" styleClass="label-list" stylesheets="@../application.css" text="LISTA ZADAŃ" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      								<Label alignment="CENTER" contentDisplay="CENTER" styleClass="label-list" stylesheets="@../application.css" text="LISTA ZADAN" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets top="4.0" />
                </GridPane.margin></Label>
@@ -62,7 +62,7 @@
                         <Insets left="10.0" right="20.0" />
                      </GridPane.margin>
                   </JFXComboBox>
-                  <JFXButton maxWidth="-Infinity" minWidth="-Infinity" onAction="#refresh" prefHeight="31.0" prefWidth="95.0" styleClass="refresh-button" stylesheets="@../application.css" text="ODŚWIEŻ" GridPane.columnIndex="1">
+                  <JFXButton maxWidth="-Infinity" minWidth="-Infinity" onAction="#refresh" prefHeight="31.0" prefWidth="95.0" styleClass="refresh-button" stylesheets="@../application.css" text="ODSWIEZ" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>

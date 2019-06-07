@@ -28,7 +28,7 @@
             <RowConstraints maxHeight="-Infinity" prefHeight="60.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <JFXTextField fx:id="txtTitle" alignment="CENTER" promptText="Tytuł zadania..." styleClass="text-field-singleTask" stylesheets="@../application.css" unFocusColor="#c19a3e">
+            <JFXTextField fx:id="txtTitle" alignment="CENTER" promptText="Tytul zadania..." styleClass="text-field-singleTask" stylesheets="@../application.css" unFocusColor="#c19a3e">
                <GridPane.margin>
                   <Insets left="5.0" right="5.0" />
                </GridPane.margin>
@@ -65,7 +65,7 @@
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Początek zadania:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                  <Label text="Poczatek zadania:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
@@ -75,7 +75,7 @@
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label alignment="CENTER" text="Użytkownik:" GridPane.halignment="RIGHT">
+                  <Label alignment="CENTER" text="Uzytkownik:" GridPane.halignment="RIGHT">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
@@ -85,7 +85,7 @@
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="txtUserID" alignment="CENTER" styleClass="label-userID" stylesheets="@../application.css" text="ID Użytkownika" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                  <Label fx:id="txtUserID" alignment="CENTER" styleClass="label-userID" stylesheets="@../application.css" text="ID Uzytkownika" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                      <GridPane.margin>
                         <Insets left="5.0" />
                      </GridPane.margin>
@@ -120,7 +120,7 @@
                         <Insets bottom="5.0" left="5.0" top="5.0" />
                      </GridPane.margin>
                   </JFXComboBox>
-                  <Label text="Zadanie ukończone:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Label text="Zadanie ukonczone:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>

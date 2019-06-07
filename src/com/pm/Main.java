@@ -28,8 +28,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 
 		Dialog<Pair<String, String>> dialog = new Dialog<>();
-		dialog.setTitle("MENED¯ER ZADAÑ");
-		dialog.setHeaderText("Logowanie U¿ytkownika");
+		dialog.setTitle("MENEDZER ZADAN");
+		dialog.setHeaderText("Logowanie Uzytkownika");
 
 		dialog.setGraphic(new ImageView(this.getClass().getResource("/images/Login_64x.png").toString()));
 
@@ -42,13 +42,13 @@ public class Main extends Application {
 		grid.setPadding(new Insets(20, 150, 10, 10));
 
 		TextField username = new TextField();
-		username.setPromptText("U¿ytkownik");
+		username.setPromptText("Uzytkownik");
 		PasswordField password = new PasswordField();
-		password.setPromptText("Has³o");
+		password.setPromptText("Haslo");
 
-		grid.add(new Label("U¿ytkownik:"), 0, 0);
+		grid.add(new Label("Uzytkownik:"), 0, 0);
 		grid.add(username, 1, 0);
-		grid.add(new Label("Has³o:"), 0, 1);
+		grid.add(new Label("Haslo:"), 0, 1);
 		grid.add(password, 1, 1);
 
 		Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
@@ -73,7 +73,7 @@ public class Main extends Application {
 
 		result.ifPresent(usernamePassword -> {
 			System.out
-					.println("U¿ytkownik = " + usernamePassword.getKey() + ", Has³o = " + usernamePassword.getValue());
+					.println("Uzytkownik = " + usernamePassword.getKey() + ", Haslo = " + usernamePassword.getValue());
 
 			ViewLoader<AnchorPane, MainViewController> viewLoader = new ViewLoader<>("view/TasksView.fxml");
 			viewLoader.getController().setUserId(usernamePassword.getKey());
@@ -83,7 +83,7 @@ public class Main extends Application {
 			Scene scene = new Scene(anchorPane);
 			primaryStage.setScene(scene);
 			primaryStage.getIcons().add(new Image("/images/Logo-icon-32x.png"));
-			primaryStage.setTitle(" MENED¯ER ZADAÑ");
+			primaryStage.setTitle(" MENEDZER ZADAN");
 			primaryStage.setResizable(false);
 			primaryStage.show();
 		});
