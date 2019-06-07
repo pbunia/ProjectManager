@@ -95,9 +95,9 @@ public class SingleTaskViewController {
 
 	@FXML
 	public void resetButton() {
-		txtTitle.setText("Title...");
-		txtDescription.setText("Description...");
-		comboBoxGroupID.setValue("GroupId");
+		txtTitle.setText("Tytu³ zadania...");
+		txtDescription.setText("Opis zadania...");
+		comboBoxGroupID.setValue("Projekt");
 		dateCreation.setValue(LocalDate.now());
 		dateFinish.setValue(LocalDate.now());
 		comboBoxPriority.setValue(Priority.NORMALNY);

@@ -27,14 +27,12 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 
 		Dialog<Pair<String, String>> dialog = new Dialog<>();
-		dialog.setTitle("Project Manager");
-		dialog.setHeaderText("USER LOGIN");
-
-		// dialog.initStyle(StageStyle.UTILITY);
+		dialog.setTitle("MENED¯ER ZADAÑ");
+		dialog.setHeaderText("Logowanie U¿ytkownika");
 
 		dialog.setGraphic(new ImageView(this.getClass().getResource("/images/Login_64x.png").toString()));
 
-		ButtonType loginButtonType = new ButtonType("Login", ButtonData.OK_DONE);
+		ButtonType loginButtonType = new ButtonType("Zaloguj", ButtonData.OK_DONE);
 		dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
 
 		GridPane grid = new GridPane();
@@ -43,13 +41,13 @@ public class Main extends Application {
 		grid.setPadding(new Insets(20, 150, 10, 10));
 
 		TextField username = new TextField();
-		username.setPromptText("User");
+		username.setPromptText("U¿ytkownik");
 		PasswordField password = new PasswordField();
-		password.setPromptText("Password");
+		password.setPromptText("Has³o");
 
-		grid.add(new Label("User:"), 0, 0);
+		grid.add(new Label("U¿ytkownik:"), 0, 0);
 		grid.add(username, 1, 0);
-		grid.add(new Label("Password:"), 0, 1);
+		grid.add(new Label("Has³o:"), 0, 1);
 		grid.add(password, 1, 1);
 
 		Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
@@ -73,7 +71,8 @@ public class Main extends Application {
 		Optional<Pair<String, String>> result = dialog.showAndWait();
 
 		result.ifPresent(usernamePassword -> {
-			System.out.println("Username=" + usernamePassword.getKey() + ", Password=" + usernamePassword.getValue());
+			System.out
+					.println("U¿ytkownik = " + usernamePassword.getKey() + ", Has³o = " + usernamePassword.getValue());
 
 			ViewLoader<AnchorPane, MainViewController> viewLoader = new ViewLoader<>("view/TasksView.fxml");
 			viewLoader.getController().setUserId(usernamePassword.getKey());
@@ -82,7 +81,7 @@ public class Main extends Application {
 
 			Scene scene = new Scene(anchorPane);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Project Manager");
+			primaryStage.setTitle("MENED¯ER ZADAÑ");
 			primaryStage.setResizable(false);
 			primaryStage.show();
 		});
