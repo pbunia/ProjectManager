@@ -71,7 +71,7 @@ public class SingleTaskViewController {
 	}
 	
 	/**
-	 * method initiate combo objects for pririty and category enum classes used as one of the attributes defining task
+	 * method initiate combo objects for priority and category ENUM classes used as one of the attributes defining task
 	 */
 	@FXML
 	private void initialize() {
@@ -102,7 +102,7 @@ public class SingleTaskViewController {
 		comboBoxCategory.setValue(Category.PRACA);
 	}
 	/**
-	 * Method initialised by a button that creates a task upon completing all the fields with it's assicated attributes
+	 * Method initialized by a button that creates a task upon completing all the fields with it's associated attributes
 	 */
 	@FXML
 	public void createTaskButton() {

@@ -105,7 +105,7 @@ public class Task {
 	}
 /**
  * Standard Get method invoking one attribute from Task method
- * @return groupId retrive defined group id used to categorize task for better management by user 
+ * @return groupId retrieve defined group id used to categorize task for better management by user 
  */
 	public String getGroupId() {
 		return groupId;
@@ -148,7 +148,7 @@ public class Task {
 	}
 	/**
 	 * Standard Get method invoking one attribute from Task method
-	 * @return category invokes category chosed by used assiciated to a task
+	 * @return category invokes category chosen by user that is  associated to a task
 	 */
 	public Category getCategory() {
 		return category;

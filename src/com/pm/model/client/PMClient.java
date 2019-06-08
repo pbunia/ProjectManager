@@ -33,7 +33,7 @@ public class PMClient {
 	public PMClient() {
 	}
 	/**
-	 * This is GET method that rerives all tasks saved on server
+	 * This is GET method that retrieves all tasks saved on server
 	 * @return Tasks saved/available on server
 	 */
 	@GET
@@ -48,9 +48,9 @@ public class PMClient {
 		return tasks;
 	}
 	/**
-	 * This is 2nd GET method that retrives all available tasks with allocated ID number
-	 * @param index request to retrive exacly specified item/task
-	 * @return task program retrives exact task
+	 * This is 2nd GET method that retrieves all available tasks with allocated ID number
+	 * @param index request to retrieve exactly specified item/task
+	 * @return task program retrieves exact task
 	 */
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -88,7 +88,7 @@ public class PMClient {
 	}
 	/**
 	 * Method called in order to delete existing record from the origin server
-	 * @param index Call reuest to delete exacly specified record 
+	 * @param index Call request to delete exactly specified record 
 	 */
 	@DELETE
 	public void deleteTask(Long index) {

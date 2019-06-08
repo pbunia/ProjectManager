@@ -47,7 +47,7 @@ public class MainViewController {
 		this.userId = userId;
 	}
 	/**
-	 * Method initiate GET method and retrives all tasks saved on server
+	 * Method retrieves all tasks saved on server
 	 */
 	@FXML
 	public void refresh() {
@@ -93,7 +93,7 @@ public class MainViewController {
 		}
 	}
 	/**
-	 * method assocated to the button and it initialize new windoow with task attibuted to add
+	 * method associated to the button and it initializes new window with task prompting to put attributes
 	 */
 	@FXML
 	private void addTaskButton() {
@@ -112,7 +112,7 @@ public class MainViewController {
 		addDialogStage.showAndWait();
 	}
 	/**
-	 * method initiates refresh method within time loop that activates automatiaclly and retrives list of saved tasks
+	 * method initiates refresh method within time loop that activates automatically and retrieves list of saved tasks
 	 * @return t.start launch thread for task lists refresh
 	 */
 	@FXML

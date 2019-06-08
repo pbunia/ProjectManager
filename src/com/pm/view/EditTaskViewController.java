@@ -54,7 +54,7 @@ public class EditTaskViewController {
 	private Task theTask;
 	private ObservableList<String> projectList;
 	/**
-	 * method initiate combo objects for pririty and category enum classes used as one of the attributes defining task
+	 * method initiate combo objects for priority and category ENUM classes used as one of the attributes defining task
 	 */
 	@FXML
 	private void initialize() {
@@ -62,7 +62,7 @@ public class EditTaskViewController {
 		comboBoxCategory.getItems().setAll(Category.values());
 	}
 	/**
-	 * Retrives single task with it's assocaited  details described by attributes
+	 * Retrieves single task with it's associated  details described by attributes
 	 */
 	public void loadTask() {
 		txtUserID.setText(theTask.getUserId());
@@ -97,7 +97,7 @@ public class EditTaskViewController {
 		stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
 	}
 	/**
-	 * Method initialised by a button that creates a task upon completing all the fields with it's assicated attributes
+	 * Method initialized by a button that creates a task upon completing all the fields with it's associated attributes
 	 */
 	@FXML
 	public void createTaskButton() {
