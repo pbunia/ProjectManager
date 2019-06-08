@@ -1,5 +1,6 @@
 package com.pm.view;
 
+
 import java.time.LocalDate;
 
 import com.jfoenix.controls.JFXCheckBox;
@@ -18,6 +19,9 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+/**Class implements actions to the objects (buttons) in relation to the tasks that are already created and allow an edition of attributes on task
+ * @author ireneusz Seredyn
+ */
 public class EditTaskViewController {
 
 	@FXML
@@ -50,13 +54,17 @@ public class EditTaskViewController {
 	private Stage stage;
 	private Task theTask;
 	private ObservableList<String> projectList;
-
+	/**
+	 * Method initiate combo objects for priority and category ENUM classes used as one of the attributes defining task
+	 */
 	@FXML
 	private void initialize() {
 		comboBoxPriority.getItems().setAll(Priority.values());
 		comboBoxCategory.getItems().setAll(Category.values());
 	}
-
+	/**
+	 * Retrieves single task with it's associated  details described by attributes
+	 */
 	public void loadTask() {
 		txtUserID.setText(theTask.getUserId());
 		comboBoxGroupID.setValue(theTask.getGroupId());
@@ -82,12 +90,16 @@ public class EditTaskViewController {
 		this.projectList = projectList;
 		comboBoxGroupID.setItems(this.projectList);
 	}
-
+	/**
+	 * Method that is associated to the button that cancel/closes the task window without saving it on server
+	 */
 	@FXML
 	public void cancelButton() {
 		stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
 	}
-
+	/**
+	 * Method initialized by a button that creates a task upon completing all the fields with it's associated attributes
+	 */
 	@FXML
 	public void createTaskButton() {
 		String userId = txtUserID.getText();
