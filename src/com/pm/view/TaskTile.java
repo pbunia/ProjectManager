@@ -62,7 +62,7 @@ public class TaskTile extends Pane {
 	 * method defines Task attributes
 	 * @param id  sequenced Task id 
 	 * @param userId User name/nickname defined when logged into program
-	 * @param groupId retrieve defined group id used to categorize task for better management by user
+	 * @param groupId retrieves defined group id used to categorize task for better management by user
 	 * @param title is a task title/subject
 	 * @param comment this is a body of the task with detailed description
 	 * @param category This is defined by user. Chosen from ENUM list.

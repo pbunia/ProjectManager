@@ -24,19 +24,19 @@ public class Task {
 
 	}
 
-	/**Method defining Exact task with it's associated id with the rest of parametes below
+	/**Method defining Exact task with it's associated id with the rest of parameters below
 	 * that can be called/invoked by the program
 	 * 
-	 * @param id uniqe task id given by server when stored/creasted on server
+	 * @param id unique task id given by server when stored/created on server
 	 * @param userId user name 
-	 * @param groupId
-	 * @param title
-	 * @param comment
-	 * @param category
-	 * @param createDate
-	 * @param finishDate
-	 * @param priority
-	 * @param finishStatus
+	 * @param groupId retrieves defined group id used to categorize task for better management by user
+	 * @param title is a task title/subject
+	 * @param comment this is a body of the task with detailed description
+	 * @param category This is defined by user. Chosen from ENUM list.
+	 * @param createDate  date of task creation
+	 * @param finishDate associated end date of the task
+	 * @param priority Chosen by user from ENUM list this defines priority 
+	 * @param finishStatus this defines if task is completed or not
 	 */
 	public Task(Long id, String userId, String groupId, String title, String comment, Category category,
 			LocalDate createDate, LocalDate finishDate, Priority priority, boolean finishStatus) {
@@ -51,7 +51,7 @@ public class Task {
 		this.priority = priority;
 		this.finishStatus = finishStatus;
 	}
-	/** Method defining task with it's paremeters that can be called/invoked by the program
+	/** Method defining task with it's parameters that can be called/invoked by the program
 	 * 
 	 * @param userId
 	 * @param groupId
@@ -77,7 +77,7 @@ public class Task {
 	}
 /**
  * Standard Get method invoking one attribute from Task method
- * @return id retrive exact task id
+ * @return id retrieves exact task id
  */
 	public Long getId() {
 		return id;
@@ -119,7 +119,7 @@ public class Task {
 	}
 /**
  * Standard Get method invoking one attribute from Task method
- * @return title  Gest title of precise task
+ * @return title return title of  task
  */
 	public String getTitle() {
 		return title;
@@ -176,7 +176,7 @@ public class Task {
 	}
 	/**
 	 * Standard Get method invoking one attribute from Task method
-	 * @return finishDate retrive end date of task
+	 * @return finishDate retrieves end date of task
 	 */
 	public LocalDate getFinishDate() {
 		return finishDate;
@@ -190,7 +190,7 @@ public class Task {
 	}
 	/**
 	 * Standard Get method invoking one attribute from Task method
-	 * @return priority retrives priority signature associated with a task
+	 * @return priority returns priority signature associated with a task
 	 */
 	public Priority getPriority() {
 		return priority;

@@ -26,7 +26,7 @@ import javafx.util.Duration;
 
 /**
  * Class defines actions to objects on the main screen (Screen that holds list of all created tasks)
- * @author Mateusz Szyprowski
+ * @author Ireneusz Seredyn
  *
  */
 public class MainViewController {
@@ -47,7 +47,7 @@ public class MainViewController {
 		this.userId = userId;
 	}
 	/**
-	 * Method retrieves all tasks saved on server
+	 * Method retrieves all tasks that are saved/stored on server
 	 */
 	@FXML
 	public void refresh() {
@@ -93,7 +93,7 @@ public class MainViewController {
 		}
 	}
 	/**
-	 * method associated to the button and it initializes new window with task prompting to put attributes
+	 * Method associated to the button and it initializes window to define new task prompting to declare attributes
 	 */
 	@FXML
 	private void addTaskButton() {
@@ -112,7 +112,7 @@ public class MainViewController {
 		addDialogStage.showAndWait();
 	}
 	/**
-	 * method initiates refresh method within time loop that activates automatically and retrieves list of saved tasks
+	 * Method initiates refresh method within time loop that activates automatically and retrieves list of saved tasks
 	 * @return t.start launch thread for task lists refresh
 	 */
 	@FXML

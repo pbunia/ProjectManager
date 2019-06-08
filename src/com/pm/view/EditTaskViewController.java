@@ -1,8 +1,6 @@
 package com.pm.view;
 
-/**Class implements actions to the objects (buttons) in relation to the tasks that are already created and edition of attributes are performed
- * @author ireneusz Seredyn
- */
+
 import java.time.LocalDate;
 
 import com.jfoenix.controls.JFXCheckBox;
@@ -21,6 +19,9 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+/**Class implements actions to the objects (buttons) in relation to the tasks that are already created and allow an edition of attributes on task
+ * @author ireneusz Seredyn
+ */
 public class EditTaskViewController {
 
 	@FXML
@@ -54,7 +55,7 @@ public class EditTaskViewController {
 	private Task theTask;
 	private ObservableList<String> projectList;
 	/**
-	 * method initiate combo objects for priority and category ENUM classes used as one of the attributes defining task
+	 * Method initiate combo objects for priority and category ENUM classes used as one of the attributes defining task
 	 */
 	@FXML
 	private void initialize() {
@@ -90,7 +91,7 @@ public class EditTaskViewController {
 		comboBoxGroupID.setItems(this.projectList);
 	}
 	/**
-	 * method that is associated to the button that cancel/closes the task window without saving it on server
+	 * Method that is associated to the button that cancel/closes the task window without saving it on server
 	 */
 	@FXML
 	public void cancelButton() {

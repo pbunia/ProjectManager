@@ -1,9 +1,7 @@
 package com.pm.view;
 
 
-/**Class defines actions to the objects (like buttons) in relation to the creation of the task by setting it's attributes
- * @author ireneusz Seredyn
- */
+
 import java.time.LocalDate;
 
 import com.jfoenix.controls.JFXCheckBox;
@@ -21,7 +19,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
+/**Class defines actions to the objects (like buttons) in relation to the creation of the task by setting it's attributes
+ * @author ireneusz Seredyn
+ */
 public class SingleTaskViewController {
 
 	private String userId;
