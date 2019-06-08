@@ -113,7 +113,7 @@ public class MainViewController {
 	}
 	/**
 	 * Method initiates refresh method within time loop that activates automatically and retrieves list of saved tasks
-	 * @return t.start launch thread for task lists refresh
+	 * 
 	 */
 	@FXML
 	public void initialize() {

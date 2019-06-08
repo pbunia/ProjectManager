@@ -77,6 +77,12 @@ public class PMClient {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	
+	/**
+	 * Method purpose is to POST(save) task into origin server
+	 * @param task This is a task object described by attributes included in class Task
+	 * @return t returns task
+	 */
 	public Task postTask(Task task) {
 		Client client = ClientBuilder.newClient();
 		URI uri = UriBuilder.fromPath("https://jaztaskmanager.herokuapp.com/api/tasks").build();
@@ -92,6 +98,11 @@ public class PMClient {
 	 */
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
+	/**
+	 * 
+	 * @param task This is a task object described by attributes included in class Task
+	 * @return t This return Task
+	 */
 	public Task putTask(Task task) {
 		Client client = ClientBuilder.newClient();
 		URI uri = UriBuilder.fromPath("https://jaztaskmanager.herokuapp.com/api/tasks").build();

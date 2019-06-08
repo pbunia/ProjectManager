@@ -244,8 +244,10 @@ public class TaskTile extends Pane {
 		editDialogStage.showAndWait();
 	}
 	/**
-	 * method defining visual effect by setting a color. This is  driven by amount of dates between creation and finish date to extinguish which tasks deadline is approaching
-	 * @param finishStatus
+	 * method defining visual effect by setting a color. This is  driven by amount of dates between creation and 
+	 * finish date to extinguish which tasks deadline is approaching. If task is completed and box is ticked entire task tile become 
+	 * gray out.
+	 * @param finishStatus this defines if task is still active or is completed 
 	 */
 	public void checkWhenFinish(boolean finishStatus) {
 		if (finishStatus) {

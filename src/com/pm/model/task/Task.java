@@ -53,15 +53,15 @@ public class Task {
 	}
 	/** Method defining task with it's parameters that can be called/invoked by the program
 	 * 
-	 * @param userId
-	 * @param groupId
-	 * @param title
-	 * @param comment
-	 * @param category
-	 * @param createDate
-	 * @param finishDate
-	 * @param priority
-	 * @param finishStatus
+	 * @param userId unique task id given by server when stored/created on server
+	 * @param groupId retrieves defined group id used to categorize task for better management by user
+	 * @param title title is a task title/subject
+	 * @param comment this is a body of the task with detailed description
+	 * @param category This is defined by user. Chosen from ENUM list.
+	 * @param createDate date of task creation
+	 * @param finishDate associated end date of the task
+	 * @param priority Chosen by user from ENUM list this defines priority 
+	 * @param finishStatus this defines if task is completed or not
 	 */
 	public Task(String userId, String groupId, String title, String comment, Category category, LocalDate createDate,
 			LocalDate finishDate, Priority priority, boolean finishStatus) {

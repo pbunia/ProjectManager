@@ -131,7 +131,7 @@ public class Tests {
 	}
 	/**
 	 * Method is checking if POST and DELETE functions are working correctly 
-	 * @return null 
+	 *
 	 */
 	@Test
 	public void postOneTaskDeleteAndCheckIfNull() {
