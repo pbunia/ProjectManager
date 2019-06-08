@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Test;
 
 import com.pm.model.client.PMClient;
@@ -16,6 +17,16 @@ public class Tests {
 
 	Task taskTest = new Task("U_Test", "Project_Test", "Title_Test", "d", Category.DOM, LocalDate.now(), LocalDate.now().plusDays(10), Priority.WYSOKI,
 			true);
+	@After
+	public void tearDown() {
+		PMClient client = new PMClient();
+		List<Task> tasks = client.getAllTasks();
+		for (Task t : tasks) {
+			if(t.getUserId().equals("U_Test"))
+				client.deleteTask(t.getId());
+		}
+	}
+	
 	@Test
 	public void postOneTaskAndCheckIfServerNotNull() {	
 		PMClient client = new PMClient();

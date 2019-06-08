@@ -44,12 +44,8 @@ public class PMClient {
 		URI uri = UriBuilder.fromPath("https://jaztaskmanager.herokuapp.com/api/tasks/all").build();
 		WebTarget webTarget = client.target(uri);
 		Response response = webTarget.request().accept(MediaType.APPLICATION_JSON).get(Response.class);
-		try {
 		tasks = response.readEntity(new GenericType<List<Task>>() {});
-		}
-		catch (ResponseProcessingException e) {
-			return tasks = null;
-		}
+
 		client.close();
 		return tasks;
 	}
