@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -54,7 +55,7 @@ public class MainViewController {
 			}
 		});
 
-		ObservableList<String> projectName = FXCollections.observableArrayList("All Groups");
+		ObservableList<String> projectName = FXCollections.observableArrayList("Wszystkie Projekty");
 		for (Task t : tasks) {
 			if (!projectName.contains(t.getGroupId()))
 				projectName.add(t.getGroupId());
@@ -94,7 +95,8 @@ public class MainViewController {
 		viewLoader.getController().setStage(addDialogStage);
 		AnchorPane anchorPane = viewLoader.getLayout();
 		Scene scene = new Scene(anchorPane);
-		addDialogStage.setTitle("Add new Task");
+		addDialogStage.setTitle(" DODAWANIE NOWEGO ZADANIA");
+		addDialogStage.getIcons().add(new Image("/images/Logo-icon-32x.png"));
 		addDialogStage.initModality(Modality.WINDOW_MODAL);
 		addDialogStage.setScene(scene);
 		addDialogStage.setResizable(false);
@@ -104,7 +106,7 @@ public class MainViewController {
 	@FXML
 	public void initialize() {
 		refresh();
-		projectCB.setPromptText("All Groups");
+		projectCB.setPromptText("Wszystkie Projekty");
 		Runnable r = () -> {
 			Timeline timeline = new Timeline(new KeyFrame(Duration.millis(2500), ae -> refresh()));
 			timeline.setCycleCount(Animation.INDEFINITE);

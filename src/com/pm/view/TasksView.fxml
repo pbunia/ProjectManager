@@ -29,7 +29,7 @@
 								<Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
 							</padding>
          <children>
-      								<Label alignment="CENTER" contentDisplay="CENTER" styleClass="label-list" stylesheets="@../application.css" text="LIST OF TASKS" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      								<Label alignment="CENTER" contentDisplay="CENTER" styleClass="label-list" stylesheets="@../application.css" text="LISTA ZADAN" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets top="4.0" />
                </GridPane.margin></Label>
@@ -42,8 +42,8 @@
             </ScrollPane>
             <GridPane prefHeight="31.0" prefWidth="691.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
               <columnConstraints>
-                  <ColumnConstraints halignment="CENTER" hgrow="NEVER" />
-                <ColumnConstraints halignment="CENTER" hgrow="NEVER" />
+                  <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="110.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" />
                   <ColumnConstraints halignment="RIGHT" hgrow="NEVER" prefWidth="200.0" />
                 <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="220.0" />
               </columnConstraints>
@@ -62,12 +62,12 @@
                         <Insets left="10.0" right="20.0" />
                      </GridPane.margin>
                   </JFXComboBox>
-                  <JFXButton onAction="#refresh" prefHeight="31.0" prefWidth="85.0" styleClass="refresh-button" stylesheets="@../application.css" text="REFRESH" GridPane.columnIndex="1">
+                  <JFXButton maxWidth="-Infinity" minWidth="-Infinity" onAction="#refresh" prefHeight="31.0" prefWidth="95.0" styleClass="refresh-button" stylesheets="@../application.css" text="ODSWIEZ" GridPane.columnIndex="1">
                      <GridPane.margin>
-                        <Insets left="15.0" />
+                        <Insets left="10.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton onAction="#addTaskButton" prefHeight="31.0" prefWidth="85.0" styleClass="add-button" stylesheets="@../application.css" text="ADD">
+                  <JFXButton maxWidth="-Infinity" minWidth="-Infinity" onAction="#addTaskButton" prefHeight="31.0" prefWidth="95.0" styleClass="add-button" stylesheets="@../application.css" text="DODAJ">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -75,7 +75,7 @@
                         <Insets left="20.0" right="5.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <Label stylesheets="@../application.css" text="Filter by Group ID:" GridPane.columnIndex="2" />
+                  <Label stylesheets="@../application.css" text="Projekt:" GridPane.columnIndex="2" />
                </children>
             </GridPane>
          </children>

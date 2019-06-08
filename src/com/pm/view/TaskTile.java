@@ -17,9 +17,8 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -104,13 +103,13 @@ public class TaskTile extends Pane {
 			titleLabel = new Label("");
 		} else
 			titleLabel = new Label(title);
-			titleLabel.setStyle("-fx-font-size: 20px;");
-			titleLabel.setStyle("-fx-underline: true;");
+		titleLabel.setStyle("-fx-font-size: 20px;");
+		titleLabel.setStyle("-fx-underline: true;");
 
 		if (userId == null) {
-			userIdLabel = new Label("Created by: ");
+			userIdLabel = new Label("Zalozone przez: ");
 		} else
-			userIdLabel = new Label("Created by: " + userId);
+			userIdLabel = new Label("Zalozone przez: " + userId);
 
 		if (comment == null) {
 			commentLabel = new Label("");
@@ -121,15 +120,17 @@ public class TaskTile extends Pane {
 		commentLabel.setMaxWidth(300);
 
 		vBox1.getChildren().addAll(titleLabel, userIdLabel, commentLabel, hBox1);
-		vBox1.setPrefWidth(525); // 685
+		vBox1.setPrefWidth(505); //525
 	}
 
 	public void setVBox2() {
 		delBtn = new JFXButton("X");
-		delBtn.setStyle("-fx-background-color: #E5E7E9;" + "-fx-text-fill: #212121;" + "-fx-font-weight: bold;" + "-fx-background-radius: 15px");
+		delBtn.setStyle("-fx-background-color: #E5E7E9;" + "-fx-text-fill: #212121;" + "-fx-font-weight: bold;"
+				+ "-fx-background-radius: 15px");
 		delBtn.setOnAction(e -> deleteTask());
 		editBtn = new JFXButton("E");
-		editBtn.setStyle("-fx-background-color: #E5E7E9;" + "-fx-text-fill: #212121;" + "-fx-font-weight: bold;" + "-fx-background-radius: 15px");
+		editBtn.setStyle("-fx-background-color: #E5E7E9;" + "-fx-text-fill: #212121;" + "-fx-font-weight: bold;"
+				+ "-fx-background-radius: 15px");
 		editBtn.setOnAction(e -> showEditTaskScreen());
 
 		vBox2.getChildren().addAll(delBtn, editBtn);
@@ -187,7 +188,8 @@ public class TaskTile extends Pane {
 		viewLoader.getController().setProjectList(projectName);
 		AnchorPane anchorPane = viewLoader.getLayout();
 		Scene scene = new Scene(anchorPane);
-		editDialogStage.setTitle("Edit");
+		editDialogStage.setTitle(" EDYCJA ZADANIA");
+		editDialogStage.getIcons().add(new Image("/images/Logo-icon-32x.png"));
 		editDialogStage.initModality(Modality.WINDOW_MODAL);
 		editDialogStage.setScene(scene);
 		editDialogStage.setResizable(false);

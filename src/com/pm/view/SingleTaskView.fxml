@@ -28,11 +28,11 @@
             <RowConstraints maxHeight="-Infinity" prefHeight="60.0" valignment="CENTER" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
-            <JFXTextField fx:id="txtTitle" alignment="CENTER" promptText="Title..." styleClass="text-field-singleTask" stylesheets="@../application.css" unFocusColor="#c19a3e">
+            <JFXTextField fx:id="txtTitle" alignment="CENTER" promptText="Tytul zadania..." styleClass="text-field-singleTask" stylesheets="@../application.css" unFocusColor="#c19a3e">
                <GridPane.margin>
                   <Insets left="5.0" right="5.0" />
                </GridPane.margin></JFXTextField>
-            <JFXTextArea fx:id="txtDescription" promptText="Comments..." styleClass="text-area-singleTask" stylesheets="@../application.css" unFocusColor="#c19a3e" GridPane.rowIndex="1">
+            <JFXTextArea fx:id="txtDescription" promptText="Opis zadania..." styleClass="text-area-singleTask" stylesheets="@../application.css" unFocusColor="#c19a3e" GridPane.rowIndex="1">
                <opaqueInsets>
                   <Insets left="5.0" right="5.0" />
                </opaqueInsets>
@@ -53,36 +53,36 @@
                   <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="38.0" valignment="CENTER" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
-                  <Label text="Category:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                  <Label text="Kategoria:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Priority:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                  <Label text="Priorytet:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Creation date:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                  <Label text="Poczatek zadania:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin></Label>
-                  <Label text="Finish date:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Label text="Koniec zadania:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin></Label>
-                  <Label alignment="CENTER" text="User ID:" GridPane.halignment="RIGHT">
+                  <Label alignment="CENTER" text="Uzytkownik:" GridPane.halignment="RIGHT">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin></Label>
-                  <Label text="Group ID:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                  <Label text="Projekt:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin></Label>
-                  <Label fx:id="txtUserID" styleClass="label-userID" stylesheets="@../application.css" text="User ID" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                  <Label fx:id="txtUserID" styleClass="label-userID" stylesheets="@../application.css" text="ID Uzytkownika" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                      <GridPane.margin>
                         <Insets left="5.0" />
                      </GridPane.margin></Label>
@@ -116,7 +116,7 @@
                         <Insets bottom="5.0" left="5.0" top="5.0" />
                      </GridPane.margin>
                   </JFXComboBox>
-                  <Label text="Task Completed:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Label text="Zadanie ukonczone:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
@@ -140,7 +140,7 @@
                 <RowConstraints vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                <Button mnemonicParsing="false" onAction="#createTaskButton" prefWidth="80.0" styleClass="add-button-singleTask" stylesheets="@../application.css" text="ADD">
+                <Button mnemonicParsing="false" onAction="#createTaskButton" prefWidth="80.0" styleClass="add-button-singleTask" stylesheets="@../application.css" text="DODAJ">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -150,7 +150,7 @@
                         <Insets />
                      </GridPane.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancelButton" prefWidth="80.0" styleClass="cancel-button-singleTask" stylesheets="@../application.css" text="CANCEL" textAlignment="CENTER" GridPane.columnIndex="2">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancelButton" prefWidth="80.0" styleClass="cancel-button-singleTask" stylesheets="@../application.css" text="ANULUJ" textAlignment="CENTER" GridPane.columnIndex="2">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
