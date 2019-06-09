@@ -128,14 +128,14 @@ public class MainViewController {
 			System.out.println("Exception" + e);
 		}
 		projectCB.setPromptText("Wszystkie Projekty");
-		
-		
-		Runnable r = () -> {
+
 			
 			Timeline timeline = new Timeline(new KeyFrame(Duration.millis(2500), ae -> 
 			{
 				try {
+					
 				LocalDateTime time = client.getCurrent(); 
+					
 				if(!current.equals(time)) {
 				current = time;
 				refresh();
@@ -143,12 +143,10 @@ public class MainViewController {
 			}
 			catch(Exception e) {
 				System.out.println("Exception" + e);
+				e.printStackTrace();
 			}}));
 			timeline.setCycleCount(Animation.INDEFINITE);
 			timeline.play();
-		};
-		Thread t = new Thread(r);
-		t.start();
-	}
+	};
 
 }

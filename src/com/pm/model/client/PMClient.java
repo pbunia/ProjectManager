@@ -3,6 +3,8 @@ package com.pm.model.client;
 import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -31,7 +33,8 @@ public class PMClient {
 
 	private List<Task> tasks;
 	private Task task;
-	private LocalDateTime current;
+	private static LocalDateTime current;
+	public static Lock timeLock = new ReentrantLock();
 	private static final String URL = "https://jaztaskmanager.herokuapp.com/api/tasks";
 //	private static final String URL = "http://localhost:8080/api/tasks";
 
@@ -49,8 +52,8 @@ public class PMClient {
 		WebTarget webTarget = client.target(uri);
 		Response response = webTarget.request().accept(MediaType.APPLICATION_JSON).get(Response.class);
 		tasks = response.readEntity(new GenericType<List<Task>>() {});
-
 		client.close();
+		
 		return tasks;
 	}
 	/**
@@ -136,6 +139,7 @@ public class PMClient {
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)
 	public LocalDateTime getCurrent() {
+		
 		Client client = ClientBuilder.newClient();
 		URI uri = UriBuilder.fromPath(URL + "/current").build();
 		WebTarget webTarget = client.target(uri);
@@ -145,7 +149,6 @@ public class PMClient {
 		catch(ResponseProcessingException e) {
 			current = null;
 		}
-		
 		client.close();
 		return current;
 	}
