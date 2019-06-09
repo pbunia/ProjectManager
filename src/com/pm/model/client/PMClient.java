@@ -1,6 +1,7 @@
 package com.pm.model.client;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -30,6 +31,9 @@ public class PMClient {
 
 	private List<Task> tasks;
 	private Task task;
+	private LocalDateTime current;
+	private static final String URL = "https://jaztaskmanager.herokuapp.com/api/tasks";
+//	private static final String URL = "http://localhost:8080/api/tasks";
 
 	public PMClient() {
 	}
@@ -41,7 +45,7 @@ public class PMClient {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public List<Task> getAllTasks() {
 		Client client = ClientBuilder.newClient();
-		URI uri = UriBuilder.fromPath("https://jaztaskmanager.herokuapp.com/api/tasks/all").build();
+		URI uri = UriBuilder.fromPath(URL + "/all").build();
 		WebTarget webTarget = client.target(uri);
 		Response response = webTarget.request().accept(MediaType.APPLICATION_JSON).get(Response.class);
 		tasks = response.readEntity(new GenericType<List<Task>>() {});
@@ -58,7 +62,7 @@ public class PMClient {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Task getTask(Long index) {
 		Client client = ClientBuilder.newClient();
-		URI uri = UriBuilder.fromPath("https://jaztaskmanager.herokuapp.com/api/tasks").build();
+		URI uri = UriBuilder.fromPath(URL).build();
 		WebTarget webTarget = client.target(uri);
 		webTarget = webTarget.queryParam("index", index);
 		try {
@@ -85,7 +89,7 @@ public class PMClient {
 	 */
 	public Task postTask(Task task) {
 		Client client = ClientBuilder.newClient();
-		URI uri = UriBuilder.fromPath("https://jaztaskmanager.herokuapp.com/api/tasks").build();
+		URI uri = UriBuilder.fromPath(URL).build();
 		WebTarget webTarget = client.target(uri);
 		Response r = webTarget.request(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).post(Entity.json(task));
 		Task t = r.readEntity(Task.class);
@@ -105,7 +109,7 @@ public class PMClient {
 	 */
 	public Task putTask(Task task) {
 		Client client = ClientBuilder.newClient();
-		URI uri = UriBuilder.fromPath("https://jaztaskmanager.herokuapp.com/api/tasks").build();
+		URI uri = UriBuilder.fromPath(URL).build();
 		WebTarget webTarget = client.target(uri);
 		Response r = webTarget.request(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).put(Entity.json(task));
 		Task t = r.readEntity(Task.class);
@@ -119,11 +123,32 @@ public class PMClient {
 	@DELETE
 	public void deleteTask(Long index) {
 		Client client = ClientBuilder.newClient();
-		URI uri = UriBuilder.fromPath("https://jaztaskmanager.herokuapp.com/api/tasks").build();
+		URI uri = UriBuilder.fromPath(URL).build();
 		WebTarget webTarget = client.target(uri);
 		webTarget = webTarget.queryParam("index", index);
 		webTarget.request().delete();
 		client.close();
 	}
+	/**
+	 * Method called in order to check LocalDateTime object from the origin server
+	 * @return LocalDateTime on server
+	 */
+	@GET
+	@Consumes(MediaType.APPLICATION_JSON)
+	public LocalDateTime getCurrent() {
+		Client client = ClientBuilder.newClient();
+		URI uri = UriBuilder.fromPath(URL + "/current").build();
+		WebTarget webTarget = client.target(uri);
+		try {
+			current = webTarget.request().accept(MediaType.APPLICATION_JSON).get(LocalDateTime.class);
+		}
+		catch(ResponseProcessingException e) {
+			current = null;
+		}
+		
+		client.close();
+		return current;
+	}
+	
 
 }

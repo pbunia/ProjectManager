@@ -1,5 +1,6 @@
 package com.pm.view;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -33,6 +34,8 @@ public class MainViewController {
 
 	private String userId;
 	private ObservableList<String> projectList;
+	private PMClient client;
+	private LocalDateTime current = LocalDateTime.now();
 
 	@FXML
 	private ScrollPane SPane;
@@ -51,7 +54,7 @@ public class MainViewController {
 	 */
 	@FXML
 	public void refresh() {
-		PMClient client = new PMClient();
+//		PMClient client = new PMClient();
 		List<Task> tasks = client.getAllTasks();
 		Collections.sort(tasks, new Comparator<Task>() {
 			@Override
@@ -117,19 +120,29 @@ public class MainViewController {
 	 */
 	@FXML
 	public void initialize() {
+		client = new PMClient();
 		try {
 		refresh();
 		}
 		catch(Exception e) {
-			System.out.println("Exception" +e);
+			System.out.println("Exception" + e);
 		}
 		projectCB.setPromptText("Wszystkie Projekty");
+		
+		
 		Runnable r = () -> {
-			Timeline timeline = new Timeline(new KeyFrame(Duration.millis(2500), ae -> {try {
+			
+			Timeline timeline = new Timeline(new KeyFrame(Duration.millis(2500), ae -> 
+			{
+				try {
+				LocalDateTime time = client.getCurrent(); 
+				if(!current.equals(time)) {
+				current = time;
 				refresh();
+				}
 			}
 			catch(Exception e) {
-				System.out.println("Exception" +e);
+				System.out.println("Exception" + e);
 			}}));
 			timeline.setCycleCount(Animation.INDEFINITE);
 			timeline.play();
