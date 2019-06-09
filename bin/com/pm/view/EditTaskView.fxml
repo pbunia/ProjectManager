@@ -90,10 +90,16 @@
                         <Insets left="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <JFXComboBox fx:id="comboBoxGroupID" prefWidth="150.0" styleClass="comboBox-groupID-singleTask" stylesheets="@../application.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <JFXComboBox fx:id="comboBoxGroupID" editable="true" prefWidth="150.0" promptText=" Default" styleClass="comboBox-groupID-singleTask" stylesheets="@../application.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="5.0" />
                      </GridPane.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="9.0" />
+                     </padding>
                   </JFXComboBox>
                   <JFXComboBox fx:id="comboBoxCategory" prefWidth="150.0" styleClass="comboBox-category-singleTask" stylesheets="@../application.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
