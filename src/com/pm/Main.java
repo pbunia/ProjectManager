@@ -95,7 +95,10 @@ public class Main extends Application {
 		});
 
 	}
-
+/**
+ * Main method initiating a program 
+ * @param args Launching of a program
+ */
 	public static void main(String[] args) {
 		launch(args);
 	}

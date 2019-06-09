@@ -133,7 +133,9 @@ public class SingleTaskViewController {
 
 		stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
 	}
-
+	/**
+	 * Method allows to input characters into comment object up to max 250 
+	 */
 	@FXML
 	public void checkTextInputLength() {
 		Pattern pattern = Pattern.compile(".{0,250}");

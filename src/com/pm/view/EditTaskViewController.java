@@ -84,11 +84,17 @@ public class EditTaskViewController {
 		comboBoxPriority.setValue(theTask.getPriority());
 		cboxComplete.setSelected(theTask.isFinishStatus());
 	}
-
+/**
+ * Method that sets a stage
+ * @param stage This is stage object
+ */
 	public void setStage(Stage stage) {
 		this.stage = stage;
 	}
-
+	/**
+	 * Method that sets task
+	 * @param theTask this represents task object
+	 */
 	public void setTask(Task theTask) {
 		this.theTask = theTask;
 		loadTask();
@@ -130,7 +136,9 @@ public class EditTaskViewController {
 
 		stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
 	}
-
+	/**
+	 * Method allows to input characters into comment object up to max 250 
+	 */
 	@FXML
 	public void checkTextInputLength() {
 		Pattern pattern = Pattern.compile(".{0,250}");
