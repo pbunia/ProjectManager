@@ -117,10 +117,20 @@ public class MainViewController {
 	 */
 	@FXML
 	public void initialize() {
+		try {
 		refresh();
+		}
+		catch(Exception e) {
+			System.out.println("Exception" +e);
+		}
 		projectCB.setPromptText("Wszystkie Projekty");
 		Runnable r = () -> {
-			Timeline timeline = new Timeline(new KeyFrame(Duration.millis(2500), ae -> refresh()));
+			Timeline timeline = new Timeline(new KeyFrame(Duration.millis(2500), ae -> {try {
+				refresh();
+			}
+			catch(Exception e) {
+				System.out.println("Exception" +e);
+			}}));
 			timeline.setCycleCount(Animation.INDEFINITE);
 			timeline.play();
 		};
