@@ -1,8 +1,8 @@
 package com.pm.view;
 
-
-
 import java.time.LocalDate;
+import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
 
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
@@ -17,9 +17,14 @@ import com.pm.model.task.Task;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-/**Class defines actions to the objects (like buttons) in relation to the creation of the task by setting it's attributes
+
+/**
+ * Class defines actions to the objects (like buttons) in relation to the
+ * creation of the task by setting it's attributes
+ * 
  * @author ireneusz Seredyn
  */
 public class SingleTaskViewController {
@@ -69,26 +74,31 @@ public class SingleTaskViewController {
 		this.projectList = projectList;
 		comboBoxGroupID.setItems(this.projectList);
 	}
-	
+
 	/**
-	 * method initiate combo objects for priority and category ENUM classes used as one of the attributes defining task
+	 * method initiate combo objects for priority and category ENUM classes used as
+	 * one of the attributes defining task
 	 */
 	@FXML
 	private void initialize() {
 		comboBoxPriority.getItems().setAll(Priority.values());
 		comboBoxCategory.getItems().setAll(Category.values());
 		resetButton();
-	}		
+	}
+
 	/**
-	 * method that is associated to the button that cancel/closes the task window without saving it on server
+	 * method that is associated to the button that cancel/closes the task window
+	 * without saving it on server
 	 */
 	@FXML
 	public void cancelButton() {
 		stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
 
 	}
+
 	/**
-	 * method that clears/reset all filled attributes defining a new task before it's  submitted/created
+	 * method that clears/reset all filled attributes defining a new task before
+	 * it's submitted/created
 	 * 
 	 */
 	@FXML
@@ -101,8 +111,10 @@ public class SingleTaskViewController {
 		comboBoxPriority.setValue(Priority.NORMALNY);
 		comboBoxCategory.setValue(Category.PRACA);
 	}
+
 	/**
-	 * Method initialized by a button that creates a task upon completing all the fields with it's associated attributes
+	 * Method initialized by a button that creates a task upon completing all the
+	 * fields with it's associated attributes
 	 */
 	@FXML
 	public void createTaskButton() {
@@ -122,4 +134,13 @@ public class SingleTaskViewController {
 		stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
 	}
 
+	@FXML
+	public void checkTextInputLength() {
+		Pattern pattern = Pattern.compile(".{0,250}");
+		TextFormatter<?> formatter = new TextFormatter<>((UnaryOperator<TextFormatter.Change>) change -> {
+			return pattern.matcher(change.getControlNewText()).matches() ? change : null;
+		});
+
+		txtDescription.setTextFormatter(formatter);
+	}
 }
