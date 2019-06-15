@@ -4,10 +4,8 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.pm.ViewLoader;
@@ -44,7 +42,6 @@ public class MainViewController {
 	private LocalDateTime current = LocalDateTime.now();
 	private volatile LocalDateTime time;
 	private ExecutorService ex = Executors.newFixedThreadPool(1);
-	private ExecutorService ex2 = Executors.newFixedThreadPool(1);
 	private boolean t = true;
 
 	@FXML
