@@ -132,12 +132,12 @@ public class MainViewController {
 	@FXML
 	public void initialize() {
 		client = new PMClient();
-		try {
-			refresh();
-
-		} catch (Exception e) {
-			System.out.println("Exception" + e);
-		}
+//		try {
+//			refresh();
+//
+//		} catch (Exception e) {
+//			System.out.println("Exception" + e);
+//		}
 		projectCB.setPromptText("Wszystkie Projekty");
 
 		Timeline timeline2 = new Timeline(new KeyFrame(Duration.millis(1000), ae -> {
