@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -91,9 +92,14 @@ public class Main extends Application {
 			primaryStage.getIcons().add(new Image("/images/Logo-icon-32x.png"));
 			primaryStage.setTitle(" MENEDZER ZADAN");
 			primaryStage.setResizable(false);
+			primaryStage.setOnHiding( e -> primaryStage_Hiding(e, viewLoader.getController()));
 			primaryStage.show();
 		});
 
+	}
+	
+	private void primaryStage_Hiding(WindowEvent e, MainViewController controller) {
+		controller.close();
 	}
 /**
  * Main method initiating a program 

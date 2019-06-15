@@ -149,6 +149,7 @@ public class PMClient {
 		catch(ResponseProcessingException e) {
 			current = null;
 		}
+		
 		client.close();
 		return current;
 	}

@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.pm.ViewLoader;
@@ -26,7 +30,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
- * Class defines actions to objects on the main screen (Screen that holds list of all created tasks)
+ * Class defines actions to objects on the main screen (Screen that holds list
+ * of all created tasks)
+ * 
  * @author Ireneusz Seredyn
  *
  */
@@ -36,12 +42,16 @@ public class MainViewController {
 	private ObservableList<String> projectList;
 	private PMClient client;
 	private LocalDateTime current = LocalDateTime.now();
+	private volatile LocalDateTime time;
+	private ExecutorService ex = Executors.newFixedThreadPool(1);
+	private ExecutorService ex2 = Executors.newFixedThreadPool(1);
+	private boolean t = true;
 
 	@FXML
 	private ScrollPane SPane;
 
 	@FXML
-	private VBox vBoxSB;
+	private volatile VBox vBoxSB;
 
 	@FXML
 	private JFXComboBox<String> projectCB;
@@ -49,12 +59,12 @@ public class MainViewController {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
 	/**
 	 * Method retrieves all tasks that are saved/stored on server
 	 */
 	@FXML
 	public void refresh() {
-//		PMClient client = new PMClient();
 		List<Task> tasks = client.getAllTasks();
 		Collections.sort(tasks, new Comparator<Task>() {
 			@Override
@@ -95,8 +105,10 @@ public class MainViewController {
 			vBoxSB.getChildren().add(taskTile[i]);
 		}
 	}
+
 	/**
-	 * Method associated to the button and it initializes window to define new task prompting to declare attributes
+	 * Method associated to the button and it initializes window to define new task
+	 * prompting to declare attributes
 	 */
 	@FXML
 	private void addTaskButton() {
@@ -114,39 +126,66 @@ public class MainViewController {
 		addDialogStage.setResizable(false);
 		addDialogStage.showAndWait();
 	}
+
 	/**
-	 * Method initiates refresh method within time loop that activates automatically and retrieves list of saved tasks
+	 * Method initiates refresh method within time loop that activates automatically
+	 * and retrieves list of saved tasks
 	 * 
 	 */
 	@FXML
 	public void initialize() {
 		client = new PMClient();
 		try {
-		refresh();
-		}
-		catch(Exception e) {
+			refresh();
+
+		} catch (Exception e) {
 			System.out.println("Exception" + e);
 		}
 		projectCB.setPromptText("Wszystkie Projekty");
 
-			
-			Timeline timeline = new Timeline(new KeyFrame(Duration.millis(2500), ae -> 
-			{
-				try {
-					
-				LocalDateTime time = client.getCurrent(); 
-					
-				if(!current.equals(time)) {
-				current = time;
-				refresh();
-				}
-			}
-			catch(Exception e) {
+		Timeline timeline2 = new Timeline(new KeyFrame(Duration.millis(1000), ae -> {
+			try {
+				if (time != null)
+					if (!current.equals(time)) {
+						current = time;
+						refresh();
+//						System.out.println("Refresh");
+					}
+			} catch (Exception e) {
 				System.out.println("Exception" + e);
 				e.printStackTrace();
-			}}));
-			timeline.setCycleCount(Animation.INDEFINITE);
-			timeline.play();
+			}
+		}));
+		timeline2.setCycleCount(Animation.INDEFINITE);
+		timeline2.play();
+
+		Runnable r = () -> {
+			while (t == true) {
+				try {
+					time = client.getCurrent();
+					Thread.sleep(2500);
+				} catch (Exception e) {
+					System.out.println("Exception" + e);
+					e.printStackTrace();
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		};
+		ex.execute(r);
+
 	};
+
+	public void close() {
+		t = false;
+		try {
+			ex.shutdown();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }
