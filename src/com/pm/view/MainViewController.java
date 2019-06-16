@@ -85,7 +85,7 @@ public class MainViewController {
 		TaskTile taskTile[] = new TaskTile[tasks.size()];
 
 		for (int i = 0; i < tasks.size(); i++) {
-			if (projectCB.getValue() == null || projectCB.getValue().equals("Wszystkie"))
+			if (projectCB.getValue() == null || projectCB.getValue().equals("Wszystkie Projekty"))
 				taskTile[i] = new TaskTile(tasks.get(i).getId(), tasks.get(i).getUserId(), tasks.get(i).getGroupId(),
 						tasks.get(i).getTitle(), tasks.get(i).getComment(), tasks.get(i).getCategory(),
 						tasks.get(i).getCreateDate(), tasks.get(i).getFinishDate(), tasks.get(i).getPriority(),
@@ -139,6 +139,7 @@ public class MainViewController {
 //			System.out.println("Exception" + e);
 //		}
 		projectCB.setPromptText("Wszystkie Projekty");
+		projectCB.setOnAction(event -> refresh());
 
 		Timeline timeline2 = new Timeline(new KeyFrame(Duration.millis(1000), ae -> {
 			try {
